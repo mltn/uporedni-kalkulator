@@ -37,6 +37,9 @@
   h4 {
 	margin: 5px auto;
   }
+  .best-option {
+	background-color: lightgreen;
+  }
 </style>
 <div class="inputs">
   <div class="label-input">
@@ -132,8 +135,17 @@
 	  render(fizickoLice, fizickoLiceElement);
 	  render(pausal, pausalElement);
 	  render(knjigas, knjigasElement);
+	  
+	  let best = [fizickoLice, pausal, knjigas].sort((a,b) => a.ukupnoProcenat - b.ukupnoProcenat)[0];
+	  [fizickoLiceElement, pausalElement, knjigasElement].forEach(element => {
+		if (element.classList.contains('best-option')) {
+			element.classList.remove('best-option');
+		}
+      });
+      best.domElement.classList.add('best-option');
     };
 	const render = (pidObj, domElement) => {
+		pidObj.domElement = domElement;
 		pidObj.teretZaposlenog.procenatOsnovice = pidObj.teretZaposlenog.pio +
 			pidObj.teretZaposlenog.zdravstveno +
 			pidObj.teretZaposlenog.porez + 
@@ -153,6 +165,7 @@
 		
 		pidObj.ukupnoPid = format(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.porezNaDohodakGradjana);
 		pidObj.neto = format(bruto - pidObj.ukupnoPid - pidObj.ostaliTroskovi);
+		pidObj.ukupnoProcenat = procenatBruto(pidObj.ukupnoPid + pidObj.ostaliTroskovi);
 		domElement.innerHTML = `
 			<div class="field-block">
 			  <h3>${pidObj.title}</h3>
@@ -238,7 +251,7 @@
 					   disabled />
 			  </div>
 			</div>
-			<div class="field-block">
+			<div class="field-block total-block">
 			  <h4>Ukupno</h4>
 			  <div class="label-input">
 				<label>Ostali troškovi</label>
@@ -261,7 +274,7 @@
 			  <div class="label-input">
 				<label>%</label>
 				<input type="text"
-					   value="${procenatBruto(pidObj.ukupnoPid + pidObj.ostaliTroskovi)}"
+					   value="${pidObj.ukupnoProcenat}"
 					   disabled />
 			  </div>
 			</div>
