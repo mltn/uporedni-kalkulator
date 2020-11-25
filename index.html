@@ -45,6 +45,10 @@
     <label>Ostali Troskovi (knjigovodstvo)</label>
     <input type="text" id="ostali-troskovi" value="5000"/>
   </div>
+  <div class="label-input">
+    <label>Pausal osnovica</label>
+    <input type="text" id="pausal-osnovica" value="40000"/>
+  </div
 </div>
 <div class="options">
   <div class="option-block" id="fizicko-lice"></div>
@@ -72,15 +76,19 @@
     const brutoElement = document.getElementById('bruto');
     const normiraniTrosakElement = document.getElementById('normirani-trosak');
     const neoporeziviDeoElement = document.getElementById('neoporezivi-deo');
-    let bruto, normiraniTrosak, neoporeziviDeo;
+	const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
+	const pausalOsnovicaElement = document.getElementById('pausal-osnovica');
+    let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica;
 	const updateState = () => {
 		bruto = brutoElement.value;
 		normiraniTrosak = normiraniTrosakElement.value;
 		neoporeziviDeo = neoporeziviDeoElement.value;
+		ostaliTroskovi = ostaliTroskoviElement.value;
+		pausalOsnovica = pausalOsnovicaElement.value;
 		renderAll();
 	};
 	
-    [brutoElement, normiraniTrosakElement, neoporeziviDeoElement].forEach(element => {
+    [brutoElement, normiraniTrosakElement, neoporeziviDeoElement, ostaliTroskoviElement, pausalOsnovicaElement].forEach(element => {
 		element.addEventListener('change', updateState)
 	});
 	const createDefaultPidObj = () => ({
@@ -101,15 +109,14 @@
 	  const pausalElement = document.getElementById('pausalac');
       const pausal = createDefaultPidObj();
 	  pausal.title = 'Pausalac';
-      pausal.osnovica = 50000;
+      pausal.osnovica = pausalOsnovica;
 	  pausal.ostaliTroskovi = 0;
 	  
-	  const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
 	  const knjigasElement = document.getElementById('knjigas');
       const knjigas = createDefaultPidObj();
 	  knjigas.title = 'Knjigas';
       knjigas.osnovica = 25801;
-	  knjigas.ostaliTroskovi = ostaliTroskoviElement.value;
+	  knjigas.ostaliTroskovi = ostaliTroskovi;
 	  knjigas.placaPorezNaDohodakGradjana = true;
 	  
 	  render(fizickoLice, fizickoLiceElement);
