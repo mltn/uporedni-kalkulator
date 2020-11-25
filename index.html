@@ -5,7 +5,7 @@
 	justify-content: space-evenly;
 	align-content: space-evenly;
 	grid-template-rows: 1fr 1fr 1fr;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 1fr;
   }
   input {
     text-align: right;
@@ -13,19 +13,30 @@
   div.options {
     display: flex;
     justify-content: space-around;
+	flex-wrap: wrap;
   }
   div.option-block {
-    width: 300px;
+    width: 400px;
+	border: 1px dashed black;
+	text-align: center;
+	margin-bottom: 15px;
   }
   div.field-block {
     margin-bottom: 20px;
   }
   div.label-input {
-    width: 300px;
+    width: 350px;
     text-align: right;
   }
+  div.label-input input {
+	margin: 2px 10px;
+  }
   .inputs.label-input {
+    width: 400px;
     text-align: center;
+  }
+  h4 {
+	margin: 5px auto;
   }
 </style>
 <div class="inputs">
@@ -48,7 +59,7 @@
   <div class="label-input">
     <label>Pausal osnovica</label>
     <input type="text" id="pausal-osnovica" value="40000"/>
-  </div
+  </div>
 </div>
 <div class="options">
   <div class="option-block" id="fizicko-lice"></div>
@@ -154,15 +165,15 @@
 			  </div>
 			</div>
 			<div class="field-block">
-			  <h3>Na teret zaposlenog</h3>
+			  <h4>Na teret zaposlenog</h4>
 			  <div class="label-input">
-				<label>PIO</label>
+				<label>PIO (${pidObj.teretZaposlenog.pio}%)</label>
 				<input type="text" class="zaposleni-pio"
 					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.pio / 100)}"
 					   disabled />
 			  </div>
 			  <div class="label-input">
-				<label>Zdravstveno</label>
+				<label>Zdravstveno (${pidObj.teretZaposlenog.zdravstveno}%)</label>
 				<input type="text" class="zaposleni-zdravstveno"
 					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.zdravstveno / 100)}"
 					   disabled />
@@ -174,7 +185,7 @@
 					   disabled />
 			  </div>
 			  <div class="label-input">
-				<label>Nezaposlenost</label>
+				<label>Nezaposlenost (${pidObj.teretZaposlenog.nezaposlenost}%)</label>
 				<input type="text" class="zaposleni-nezaposlentost"
 					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.nezaposlenost / 100)}"
 					   disabled />
@@ -193,15 +204,15 @@
 				</div>
 			</div>
 			<div class="field-block">
-			  <h3>Na teret poslodavca</h3>
+			  <h4>Na teret poslodavca</h4>
 			  <div class="label-input">
-				<label>PIO</label>
+				<label>PIO (${pidObj.teretPoslodavca.pio}%)</label>
 				<input type="text"
 					   value="${format(pidObj.osnovica * pidObj.teretPoslodavca.pio / 100)}"
 					   disabled />
 			  </div>
 			  <div class="label-input">
-				<label>Zdravstveno</label>
+				<label>Zdravstveno (${pidObj.teretPoslodavca.zdravstveno}%)</label>
 				<input type="text"
 					   value="${format(pidObj.osnovica * pidObj.teretPoslodavca.zdravstveno / 100)}"
 					   disabled />
@@ -220,20 +231,22 @@
 			  </div>
 			</div>
 			<div class="field-block">
+			  <h4>Porez na dohodak gradjana</h4>
 			  <div class="label-input">
 				<label>Porez na doh</label>
 				<input type="text"
 					   value="${pidObj.porezNaDohodakGradjana}"
 					   disabled />
 			  </div>
+			</div>
+			<div class="field-block">
+			  <h4>Ukupno</h4>
 			  <div class="label-input">
 				<label>Ostali troskovi</label>
 				<input type="text"
 					   value="${pidObj.ostaliTroskovi}"
 					   disabled />
 			  </div>
-			</div>
-			<div class="field-block">
 			  <div class="label-input">
 				<label>UKUPNO PID</label>
 				<input type="text"
