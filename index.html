@@ -17,14 +17,14 @@
   }
   div.option-block {
     width: 400px;
-	border: 1px dashed black;
+	border: 1px solid black;
 	text-align: center;
 	margin-bottom: 15px;
   }
-  div.field-block {
+  .field-block {
     margin-bottom: 20px;
   }
-  div.label-input {
+  .label-input {
     width: 350px;
     text-align: right;
   }
@@ -37,8 +37,25 @@
   h4 {
 	margin: 5px auto;
   }
-  .best-option {
+  .total-block {
+	background-color: lightblue;
+	margin-bottom: 0;
+	padding-bottom: 20px;
+	padding-top: 5px;
+  }
+  .best-option .total-block {
 	background-color: lightgreen;
+  }
+  .total-block {
+	font-weight: bold;
+  }
+  .total-percentage-container {
+	padding-top: 15px;
+	text-align: center;
+  }
+  .total-block .total-percentage {
+	padding-left: 55px;
+	font-size: 24px;
   }
 </style>
 <div class="inputs">
@@ -252,30 +269,27 @@
 			  </div>
 			</div>
 			<div class="field-block total-block">
-			  <h4>Ukupno</h4>
+			  <h3>Ukupno</h3>
 			  <div class="label-input">
-				<label>Ostali troškovi</label>
+				<label><b>Ostali troškovi</b></label>
 				<input type="text"
 					   value="${pidObj.ostaliTroskovi}"
 					   disabled />
 			  </div>
 			  <div class="label-input">
-				<label>UKUPNO PID</label>
+				<label><b>UKUPNO PID</b></label>
 				<input type="text"
 					   value="${pidObj.ukupnoPid}"
 					   disabled />
 			  </div>
 			  <div class="label-input">
-				<label>NETO</label>
+				<label><b>NETO</b></label>
 				<input type="text"
 					   value="${pidObj.neto}"
 					   disabled />
 			  </div>
-			  <div class="label-input">
-				<label>%</label>
-				<input type="text"
-					   value="${pidObj.ukupnoProcenat}"
-					   disabled />
+			  <div class="label-input total-percentage-container">
+				<label class="total-percentage"><b>${pidObj.ukupnoProcenat}%</b></label>
 			  </div>
 			</div>
 		`;
