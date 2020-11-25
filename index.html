@@ -32,7 +32,7 @@
 	margin: 2px 10px;
   }
   .inputs .label-input {
-    width: 400px;
+    width: 500px;
   }
   h4 {
 	margin: 5px auto;
@@ -44,19 +44,19 @@
     <input type="money" id="bruto" value="60000"/>
   </div>
   <div class="label-input">
-    <label>Normirani Trosak</label>
+    <label>Normirani trošak (samo za fizička lica)</label>
     <input type="text" id="normirani-trosak" value="20"/>
   </div>
   <div class="label-input">
-    <label>Neoporezivi Deo</label>
+    <label>Neoporezivi deo za fizičko lice (kada bi postojao)</label>
     <input type="text" id="neoporezivi-deo" value="0"/>
   </div>
   <div class="label-input">
-    <label>Ostali Troskovi (knjigovodstvo)</label>
+    <label>Ostali troškovi (samo za knjigaše)</label>
     <input type="text" id="ostali-troskovi" value="5000"/>
   </div>
   <div class="label-input">
-    <label>Pausal osnovica</label>
+    <label>Paušal osnovica (samo za paušalce)</label>
     <input type="text" id="pausal-osnovica" value="40000"/>
   </div>
 </div>
@@ -110,7 +110,7 @@
     const renderAll = () => {
 	  const fizickoLiceElement = document.getElementById('fizicko-lice');
       const fizickoLice = createDefaultPidObj();
-	  fizickoLice.title = 'Fizicko lice ugovor o delu';
+	  fizickoLice.title = 'Fizičko lice - ugovor o delu';
       fizickoLice.osnovica = bruto - neoporeziviDeo - (bruto - neoporeziviDeo) * normiraniTrosak / 100;
       fizickoLice.teretZaposlenog.nezaposlenost = 0;
 	  fizickoLice.ostaliTroskovi = 0;
@@ -118,13 +118,13 @@
 	  
 	  const pausalElement = document.getElementById('pausalac');
       const pausal = createDefaultPidObj();
-	  pausal.title = 'Pausalac';
+	  pausal.title = 'Paušalac';
       pausal.osnovica = pausalOsnovica;
 	  pausal.ostaliTroskovi = 0;
 	  
 	  const knjigasElement = document.getElementById('knjigas');
       const knjigas = createDefaultPidObj();
-	  knjigas.title = 'Knjigas';
+	  knjigas.title = 'Knjigaš';
       knjigas.osnovica = 25801;
 	  knjigas.ostaliTroskovi = ostaliTroskovi;
 	  knjigas.placaPorezNaDohodakGradjana = true;
@@ -230,7 +230,7 @@
 			  </div>
 			</div>
 			<div class="field-block">
-			  <h4>Porez na dohodak gradjana</h4>
+			  <h4>Porez na dohodak građana</h4>
 			  <div class="label-input">
 				<label>Porez na doh</label>
 				<input type="text"
@@ -241,7 +241,7 @@
 			<div class="field-block">
 			  <h4>Ukupno</h4>
 			  <div class="label-input">
-				<label>Ostali troskovi</label>
+				<label>Ostali troškovi</label>
 				<input type="text"
 					   value="${pidObj.ostaliTroskovi}"
 					   disabled />
