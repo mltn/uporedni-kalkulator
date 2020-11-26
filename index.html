@@ -13,7 +13,7 @@
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 0;
-	background-color: lightblue;
+	background-color: #9b7fe9;
   }
   input {
     text-align: right;
@@ -33,7 +33,7 @@
     margin-bottom: 20px;
   }
   .label-input {
-    width: 350px;
+    width: 360px;
     text-align: right;
   }
   div.label-input input {
@@ -46,7 +46,7 @@
 	margin: 5px auto;
   }
   .total-block {
-	background-color: lightblue;
+	background-color: #9b7fe9;
 	margin-bottom: 0;
 	padding-bottom: 20px;
 	padding-top: 5px;
@@ -58,7 +58,7 @@
   .field-block .title {
 	margin: 0;
 	padding: 15px;
-	background-color: lightblue;
+	background-color: #9b7fe9;
 	margin-bottom: 15px;
   }
   .best-option .total-block,
@@ -76,6 +76,7 @@
 	padding-left: 55px;
 	font-size: 18px;
   }
+  
 </style>
 <div class="inputs">
   <div class="label-input">
@@ -129,11 +130,11 @@
 	const pausalOsnovicaElement = document.getElementById('pausal-osnovica');
     let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica;
 	const updateState = () => {
-		bruto = brutoElement.value;
-		normiraniTrosak = normiraniTrosakElement.value;
-		neoporeziviDeo = neoporeziviDeoElement.value;
-		ostaliTroskovi = ostaliTroskoviElement.value;
-		pausalOsnovica = pausalOsnovicaElement.value;
+		bruto = +brutoElement.value;
+		normiraniTrosak = +normiraniTrosakElement.value;
+		neoporeziviDeo = +neoporeziviDeoElement.value;
+		ostaliTroskovi = +ostaliTroskoviElement.value;
+		pausalOsnovica = +pausalOsnovicaElement.value;
 		renderAll();
 	};
 	
@@ -167,6 +168,8 @@
       knjigas.osnovica = 25801;
 	  knjigas.ostaliTroskovi = ostaliTroskovi;
 	  knjigas.placaPorezNaDohodakGradjana = true;
+	  knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
+	  knjigas.neoporeziviDeoNaTeretZaposlenog = 16300;
 	  
 	  render(fizickoLice, fizickoLiceElement);
 	  render(pausal, pausalElement);
@@ -182,11 +185,18 @@
     };
 	const render = (pidObj, domElement) => {
 		pidObj.domElement = domElement;
-		pidObj.teretZaposlenog.procenatOsnovice = pidObj.teretZaposlenog.pio +
-			pidObj.teretZaposlenog.zdravstveno +
-			pidObj.teretZaposlenog.porez + 
-			pidObj.teretZaposlenog.nezaposlenost;
-		pidObj.teretZaposlenog.ukupno = format(pidObj.osnovica * pidObj.teretZaposlenog.procenatOsnovice / 100);
+		if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
+			pidObj.teretZaposlenog.ukupno = format((pidObj.teretZaposlenog.pio * pidObj.osnovica +
+				pidObj.teretZaposlenog.zdravstveno * pidObj.osnovica +
+				(pidObj.teretZaposlenog.porez * (pidObj.osnovica - 16300)) +
+				pidObj.teretZaposlenog.nezaposlenost * pidObj.osnovica) / 100);
+		} else {		
+			pidObj.teretZaposlenog.procenatOsnovice = pidObj.teretZaposlenog.pio +
+				pidObj.teretZaposlenog.zdravstveno +
+				pidObj.teretZaposlenog.porez + 
+				pidObj.teretZaposlenog.nezaposlenost;
+			pidObj.teretZaposlenog.ukupno = format(pidObj.osnovica * pidObj.teretZaposlenog.procenatOsnovice / 100);
+		};
 		pidObj.teretPoslodavca.procenatOsnovice = pidObj.teretPoslodavca.zdravstveno +
 			pidObj.teretPoslodavca.pio;
 		pidObj.teretPoslodavca.ukupno = format(pidObj.osnovica * pidObj.teretPoslodavca.procenatOsnovice / 100);
@@ -195,6 +205,8 @@
 			const osnovicaZaPorezNaDohodakGradjana = (bruto -
 				(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
 			pidObj.porezNaDohodakGradjana = format(osnovicaZaPorezNaDohodakGradjana * 10 / 100);
+			
+			console.log(bruto, pidObj.teretZaposlenog.ukupno, pidObj.teretPoslodavca.ukupno, pidObj.ostaliTroskovi, pidObj.porezNaDohodakGradjana, osnovicaZaPorezNaDohodakGradjana, (pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
 		} else {
 			pidObj.porezNaDohodakGradjana = 0;
 		}
@@ -229,7 +241,7 @@
 			  <div class="label-input">
 				<label>Porez (${pidObj.teretZaposlenog.porez}%)</label>
 				<input type="text"
-					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.porez / 100)}"
+					   value="${format((pidObj.osnovica - 16300) * pidObj.teretZaposlenog.porez / 100)}"
 					   disabled />
 			  </div>
 			  <div class="label-input">
@@ -274,7 +286,7 @@
 			  <div class="label-input">
 				<label><b>%</b></label>
 				<input type="text"
-					   value="${procenatBruto(pidObj.teretZaposlenog.ukupno)}"
+					   value="${procenatBruto(pidObj.teretPoslodavca.ukupno)}"
 					   disabled />
 			  </div>
 			</div>
