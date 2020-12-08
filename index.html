@@ -1,21 +1,22 @@
 <style>
+	body {
+		background-color: #fcfcfc;
+	}
 	input {
 		padding-right: 5px;
 		text-align: right;
 		max-width: 100px;
 	}
 	.inputs {
-		margin: 25px auto;
-		width: 1244px;
-		border: 1px solid black;
-		padding-top: 20px;
+		margin: 15px auto;
+		padding: 10px;
 		display: grid;
-		justify-content: space-evenly;
-		align-content: space-evenly;
-		grid-template-rows: 1fr 1fr;
-		grid-template-columns: 1fr 1fr;
-		margin-bottom: 0;
-		background-color: #9b7fe9;
+		font-size: 25px;
+		text-align: left;
+		background-color: lightgrey;
+	}
+	.inputs input {
+		font-size: 25px;
 	}
 	.sakrivalica{display:none!important}
 	.show{display:block!important}
@@ -25,8 +26,8 @@
 		flex-wrap: wrap;
 	}
 	div.option-block {
+		background-color: white;
 		width: 400px;
-		border: 1px solid black;
 		text-align: center;
 		margin: 20px 20px;
 		display: flex;
@@ -50,7 +51,7 @@
 		margin: 5px auto;
 	}
 	.total-block {
-		background-color: #9b7fe9;
+		background-color: lightgray;
 		margin-bottom: 0;
 		padding-bottom: 20px;
 		padding-top: 5px;
@@ -61,12 +62,12 @@
 	.field-block .title {
 		margin: 0;
 		padding: 15px;
-		background-color: #9b7fe9;
+		background-color: lightgrey;
 		margin-bottom: 15px;
 	}
 	.best-option .total-block,
 	.best-option .field-block .title {
-		background-color: lightgreen;
+		background-color: #9b7fe9;
 	}
 	.total-block {
 		font-weight: bold;
@@ -84,18 +85,6 @@
    <div class="label-input">
       <label><b>Mesečni priliv</b></label>
       <input type="money" id="bruto" value="50000"/>
-   </div>
-   <div class="label-input">
-      <label>Normirani trošak (samo za fizička lica)</label>
-      <input type="text" id="normirani-trosak" value="20"/>
-   </div>
-   <div class="label-input" style="visibility:hidden">
-      <label>Neoporezivi deo za fizičko lice (kada bi postojao)</label>
-      <input type="text" id="neoporezivi-deo" value="0"/>
-   </div>
-   <div class="label-input">
-      <label>Ostali troškovi (samo za knjigaše)</label>
-      <input type="text" id="ostali-troskovi" value="5000"/>
    </div>
 </div>
 <div class="options">
@@ -121,18 +110,15 @@
    
 	window.addEventListener('DOMContentLoaded', () => {
 		const brutoElement = document.getElementById('bruto');
-		const neoporeziviDeoElement = document.getElementById('neoporezivi-deo');
-		const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
 		let bruto, normiraniTrosak = 20,
 			neoporeziviDeo = 0, cenaKnjigovodstva = 5000, licniTroskovi = 0;
 			ostaliTroskovi = 5000, pausalKalkulator = 28403; 
 		const updateState = () => {
 			bruto = +brutoElement.value;
-			neoporeziviDeo = +neoporeziviDeoElement.value;
 			renderAll();
 		};
 
-		[brutoElement, neoporeziviDeoElement, ostaliTroskoviElement].forEach(element => {
+		[brutoElement].forEach(element => {
 			element.addEventListener('change', updateState)
 		});
 		const createDefaultPidObj = () => ({
