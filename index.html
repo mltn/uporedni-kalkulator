@@ -1,6 +1,8 @@
 <style>
 	input {
 		padding-right: 5px;
+		text-align: right;
+		max-width: 100px;
 	}
 	.inputs {
 		margin: 25px auto;
@@ -15,9 +17,6 @@
 		margin-bottom: 0;
 		background-color: #9b7fe9;
 	}
-	input {
-		text-align: right;
-	}
 	.sakrivalica{display:none!important}
 	.show{display:block!important}
 	div.options {
@@ -30,6 +29,9 @@
 		border: 1px solid black;
 		text-align: center;
 		margin: 20px 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 	.field-block {
 		margin-bottom: 20px;
@@ -80,7 +82,7 @@
 </style>
 <div class="inputs">
    <div class="label-input">
-      <label><b>BRUTO</b></label>
+      <label><b>Mesečni priliv</b></label>
       <input type="money" id="bruto" value="50000"/>
    </div>
    <div class="label-input">
@@ -119,56 +121,56 @@
    
 	window.addEventListener('DOMContentLoaded', () => {
 		const brutoElement = document.getElementById('bruto');
-		const normiraniTrosakElement = document.getElementById('normirani-trosak');
 		const neoporeziviDeoElement = document.getElementById('neoporezivi-deo');
 		const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
-		let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica = 55000;
+		let bruto, normiraniTrosak = 20,
+			neoporeziviDeo = 0, cenaKnjigovodstva = 5000, licniTroskovi = 0;
+			ostaliTroskovi = 5000, pausalKalkulator = 28403; 
 		const updateState = () => {
 			bruto = +brutoElement.value;
-			normiraniTrosak = +normiraniTrosakElement.value;
 			neoporeziviDeo = +neoporeziviDeoElement.value;
-			ostaliTroskovi = +ostaliTroskoviElement.value;
 			renderAll();
 		};
 
-		[brutoElement, normiraniTrosakElement, neoporeziviDeoElement, ostaliTroskoviElement].forEach(element => {
+		[brutoElement, neoporeziviDeoElement, ostaliTroskoviElement].forEach(element => {
 			element.addEventListener('change', updateState)
 		});
 		const createDefaultPidObj = () => ({
 			teretZaposlenog: {...defaults.teretZaposlenog},
 			teretPoslodavca: {...defaults.teretPoslodavca},
+			ostaliTroskovi: 0,
+			porezNaDohodakGradjana: 0
 		});
 		const format = x => Math.round(x * 100) / 100;
 		const procenatBruto = x => Math.round(x * 10000 / bruto) / 100;
 		const renderAll = () => {
-		const fizickoLiceElement = document.getElementById('fizicko-lice');
-		const fizickoLice = createDefaultPidObj();
-		fizickoLice.title = 'Fizičko lice - ugovor o delu';
-		fizickoLice.osnovica = bruto - neoporeziviDeo - (bruto - neoporeziviDeo) * normiraniTrosak / 100;
-		fizickoLice.teretZaposlenog.nezaposlenost = 0;
-		fizickoLice.ostaliTroskovi = 0;
-		fizickoLice.teretZaposlenog.porez = 20;
+			const fizickoLiceElement = document.getElementById('fizicko-lice');
+			const fizickoLice = createDefaultPidObj();
+			fizickoLice.title = 'Fizičko lice';
+			fizickoLice.specificnaVrednostZaTipOporezivanja = 'Normirani trošak';
+			fizickoLice.teretZaposlenog.nezaposlenost = 0;
+			fizickoLice.teretZaposlenog.porez = 20;
 
-		const pausalElement = document.getElementById('pausalac');
-		const pausal = createDefaultPidObj();
-		pausal.title = 'Paušalac';
-		pausal.ostaliTroskovi = 0;
-		pausal.editableOsnovica = true;
+			const pausalElement = document.getElementById('pausalac');
+			const pausal = createDefaultPidObj();
+			pausal.specificnaVrednostZaTipOporezivanja = 'Kalkulator';
+			pausal.title = 'Paušalac';
+			pausal.editableOsnovica = true;
 
-		const knjigasElement = document.getElementById('knjigas');
-		const knjigas = createDefaultPidObj();
-		knjigas.title = 'Knjigaš';
-		knjigas.osnovica = 25801;
-		knjigas.ostaliTroskovi = ostaliTroskovi;
-		knjigas.placaPorezNaDohodakGradjana = true;
-		knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
-		knjigas.neoporeziviDeoNaTeretZaposlenog = 16300;
+			const knjigasElement = document.getElementById('knjigas');
+			const knjigas = createDefaultPidObj();
+			knjigas.title = 'Knjigaš';
+			knjigas.specificnaVrednostZaTipOporezivanja = 'Knjigovodja';
+			knjigas.licniTroskovi = 0;
+			knjigas.placaPorezNaDohodakGradjana = true;
+			knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
+			knjigas.neoporeziviDeoNaTeretZaposlenog = 16300;
 
-		render(fizickoLice, fizickoLiceElement);
-		render(pausal, pausalElement);
-		render(knjigas, knjigasElement);
+			render(fizickoLice, fizickoLiceElement);
+			render(pausal, pausalElement);
+			render(knjigas, knjigasElement);
 
-		let best = [fizickoLice, pausal, knjigas].sort((a,b) => a.ukupnoProcenat - b.ukupnoProcenat)[0];
+			let best = [fizickoLice, pausal, knjigas].sort((a,b) => a.ukupnoProcenat - b.ukupnoProcenat)[0];
 			[fizickoLiceElement, pausalElement, knjigasElement].forEach(element => {
 				if (element.classList.contains('best-option')) {
 					element.classList.remove('best-option');
@@ -178,9 +180,15 @@
 		};
 		const render = (pidObj, domElement) => {
 			pidObj.domElement = domElement;
-			if (pidObj.editableOsnovica) {
-				pidObj.osnovica = pausalOsnovica;
-			}
+			
+			if (pidObj.title === "Fizičko lice") {
+				pidObj.osnovica = bruto - neoporeziviDeo - (bruto - neoporeziviDeo) * normiraniTrosak / 100;
+			} else if (pidObj.title === "Paušalac") {
+				pidObj.osnovica = pausalKalkulator / 0.4655;
+			} else if (pidObj.title === "Knjigaš") {
+				pidObj.ostaliTroskovi = cenaKnjigovodstva;
+				pidObj.osnovica = 25801;
+			} 
 			
 			if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
 				pidObj.teretZaposlenog.ukupno = format((pidObj.teretZaposlenog.pio * pidObj.osnovica +
@@ -200,12 +208,8 @@
 
 			if (pidObj.placaPorezNaDohodakGradjana) {
 				const osnovicaZaPorezNaDohodakGradjana = (bruto -
-					(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
+					(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420 + licniTroskovi));
 				pidObj.porezNaDohodakGradjana = format(osnovicaZaPorezNaDohodakGradjana * 10 / 100);
-
-				console.log(bruto, pidObj.teretZaposlenog.ukupno, pidObj.teretPoslodavca.ukupno, pidObj.ostaliTroskovi, pidObj.porezNaDohodakGradjana,osnovicaZaPorezNaDohodakGradjana, (pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
-			} else {
-				pidObj.porezNaDohodakGradjana = 0;
 			}
 
 			pidObj.ukupnoPid = format(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.porezNaDohodakGradjana);
@@ -213,10 +217,32 @@
 			pidObj.ukupnoProcenat = procenatBruto(pidObj.ukupnoPid + pidObj.ostaliTroskovi);
 			domElement.innerHTML = `
 				<div class="field-block">
-					<h3 class="title">${pidObj.title}</h3>
-					<div class="label-input">
+					<h3 class="title">${pidObj.title}</h3>` +
+					(pidObj.title === 'Fizičko lice' ? `
+						<div class="label-input">
+							<label>Normirani troškovi</label>
+							<input type="text" id="normirani-troskovi" value="${normiraniTrosak}" />
+						</div>
+					` : '') +
+					(pidObj.title === 'Paušalac' ? `
+						<div class="label-input">
+							<label>Kalkulator</label>
+							<input type="text" id="pausal-kalkulator" value="${pausalKalkulator}" />
+						</div>
+					` : '') +
+					(pidObj.title === 'Knjigaš' ? `
+						<div class="label-input">
+							<label>Cena knjigovodstva</label>
+							<input type="text" id="cena-knjigovodstva" value="${cenaKnjigovodstva}" />
+						</div>
+						<div class="label-input">
+							<label>Lični troškovi</label>
+							<input type="text" id="licni-troskovi" value="${licniTroskovi}" />
+						</div>
+					` : '') +
+					`<div class="label-input">
 						<label>Osnovica</label>
-						<input type="text" class="osnovica" value="${pidObj.osnovica}" ${pidObj.editableOsnovica ? "" : "disabled"} />
+						<input type="text" class="osnovica" value="${format(pidObj.osnovica)}" disabled />
 					</div>
 				</div>
 				<div class="sakrivalica" class="hide">
@@ -299,13 +325,31 @@
 						<label class="total-percentage"><b>TROŠKOVI POSLOVANJA: ${pidObj.ukupnoProcenat}%</b></label>
 					</div>
 				</div>`;
-			if (pidObj.editableOsnovica) {
-				let element = domElement.getElementsByClassName('osnovica')[0];
-				element.addEventListener('change', () => {
-					pausalOsnovica = element.value;
+				
+			if (pidObj.title === "Fizičko lice") {
+				let normiraniTrosakElement = document.getElementById('normirani-troskovi');
+				normiraniTrosakElement.addEventListener('change', () => {
+					normiraniTrosak = +normiraniTrosakElement.value;
 					render(pidObj, domElement);
 				});
-			}
+			} else if (pidObj.title === "Paušalac") {
+				let pausalKalkulatorElement = document.getElementById('pausal-kalkulator');
+				pausalKalkulatorElement.addEventListener('change', () => {
+					pausalKalkulator = +pausalKalkulatorElement.value;
+					render(pidObj, domElement);
+				});
+			} else if (pidObj.title === "Knjigaš") {				
+				let cenaKnjigovodstvaElement = document.getElementById('cena-knjigovodstva');
+				cenaKnjigovodstvaElement.addEventListener('change', () => {
+					cenaKnjigovodstva = +cenaKnjigovodstvaElement.value;
+					render(pidObj, domElement);
+				});
+				let licniTroskoviElement = document.getElementById('licni-troskovi');
+				licniTroskoviElement.addEventListener('change', () => {
+					licniTroskovi = +licniTroskoviElement.value;
+					render(pidObj, domElement);
+				});
+			} 
 		};
 		updateState();
     });
