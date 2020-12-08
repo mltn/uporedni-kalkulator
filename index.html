@@ -209,7 +209,7 @@
 			if (pidObj.placaPorezNaDohodakGradjana) {
 				const osnovicaZaPorezNaDohodakGradjana = (bruto -
 					(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420 + licniTroskovi));
-				pidObj.porezNaDohodakGradjana = format(osnovicaZaPorezNaDohodakGradjana * 10 / 100);
+				pidObj.porezNaDohodakGradjana = format(osnovicaZaPorezNaDohodakGradjana * 10 / 110);
 			}
 
 			pidObj.ukupnoPid = format(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.porezNaDohodakGradjana);
