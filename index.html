@@ -81,7 +81,7 @@
 <div class="inputs">
    <div class="label-input">
       <label><b>BRUTO</b></label>
-      <input type="money" id="bruto" value="60000"/>
+      <input type="money" id="bruto" value="50000"/>
    </div>
    <div class="label-input">
       <label>Normirani trošak (samo za fizička lica)</label>
@@ -94,10 +94,6 @@
    <div class="label-input">
       <label>Ostali troškovi (samo za knjigaše)</label>
       <input type="text" id="ostali-troskovi" value="5000"/>
-   </div>
-   <div class="label-input">
-      <label>Paušal osnovica (samo za paušalce)</label>
-      <input type="text" id="pausal-osnovica" value="40000"/>
    </div>
 </div>
 <div class="options">
@@ -126,18 +122,16 @@
 		const normiraniTrosakElement = document.getElementById('normirani-trosak');
 		const neoporeziviDeoElement = document.getElementById('neoporezivi-deo');
 		const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
-		const pausalOsnovicaElement = document.getElementById('pausal-osnovica');
-		let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica;
+		let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica = 55000;
 		const updateState = () => {
 			bruto = +brutoElement.value;
 			normiraniTrosak = +normiraniTrosakElement.value;
 			neoporeziviDeo = +neoporeziviDeoElement.value;
 			ostaliTroskovi = +ostaliTroskoviElement.value;
-			pausalOsnovica = +pausalOsnovicaElement.value;
 			renderAll();
 		};
 
-		[brutoElement, normiraniTrosakElement, neoporeziviDeoElement, ostaliTroskoviElement, pausalOsnovicaElement].forEach(element => {
+		[brutoElement, normiraniTrosakElement, neoporeziviDeoElement, ostaliTroskoviElement].forEach(element => {
 			element.addEventListener('change', updateState)
 		});
 		const createDefaultPidObj = () => ({
@@ -158,8 +152,8 @@
 		const pausalElement = document.getElementById('pausalac');
 		const pausal = createDefaultPidObj();
 		pausal.title = 'Paušalac';
-		pausal.osnovica = pausalOsnovica;
 		pausal.ostaliTroskovi = 0;
+		pausal.editableOsnovica = true;
 
 		const knjigasElement = document.getElementById('knjigas');
 		const knjigas = createDefaultPidObj();
@@ -184,6 +178,10 @@
 		};
 		const render = (pidObj, domElement) => {
 			pidObj.domElement = domElement;
+			if (pidObj.editableOsnovica) {
+				pidObj.osnovica = pausalOsnovica;
+			}
+			
 			if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
 				pidObj.teretZaposlenog.ukupno = format((pidObj.teretZaposlenog.pio * pidObj.osnovica +
 				pidObj.teretZaposlenog.zdravstveno * pidObj.osnovica +
@@ -218,7 +216,7 @@
 					<h3 class="title">${pidObj.title}</h3>
 					<div class="label-input">
 						<label>Osnovica</label>
-						<input type="text" class="osnovica" value="${pidObj.osnovica}" disabled />
+						<input type="text" class="osnovica" value="${pidObj.osnovica}" ${pidObj.editableOsnovica ? "" : "disabled"} />
 					</div>
 				</div>
 				<div class="sakrivalica" class="hide">
@@ -301,6 +299,13 @@
 						<label class="total-percentage"><b>TROŠKOVI POSLOVANJA: ${pidObj.ukupnoProcenat}%</b></label>
 					</div>
 				</div>`;
+			if (pidObj.editableOsnovica) {
+				let element = domElement.getElementsByClassName('osnovica')[0];
+				element.addEventListener('change', () => {
+					pausalOsnovica = element.value;
+					render(pidObj, domElement);
+				});
+			}
 		};
 		updateState();
     });
