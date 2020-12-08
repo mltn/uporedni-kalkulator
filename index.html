@@ -1,330 +1,322 @@
 <style>
-  input {
-	padding-right: 5px;
-  }
-  .inputs {
-	margin: 25px auto;
-	width: 1244px;
-	border: 1px solid black;
-	padding: 20px;
-    display: grid;
-	justify-content: space-evenly;
-	align-content: space-evenly;
-	grid-template-rows: 1fr 1fr 1fr;
-	grid-template-columns: 1fr 1fr;
-	margin-bottom: 0;
-	background-color: #9b7fe9;
-  }
-  input {
-    text-align: right;
-  }
-  div.options {
-    display: flex;
-    justify-content: center;
-	flex-wrap: wrap;
-  }
-  div.option-block {
-    width: 400px;
-	border: 1px solid black;
-	text-align: center;
-	margin: 20px 20px;
-  }
-  .field-block {
-    margin-bottom: 20px;
-  }
-  .label-input {
-    width: 360px;
-    text-align: right;
-  }
-  div.label-input input {
-	margin: 2px 10px;
-  }
-  .inputs .label-input {
-    width: 500px;
-  }
-  h4 {
-	margin: 5px auto;
-  }
-  .total-block {
-	background-color: #9b7fe9;
-	margin-bottom: 0;
-	padding-bottom: 20px;
-	padding-top: 5px;
-  }
-  .total-block h3 {
-	margin: 10px auto;
-  }
-  
-  .field-block .title {
-	margin: 0;
-	padding: 15px;
-	background-color: #9b7fe9;
-	margin-bottom: 15px;
-  }
-  .best-option .total-block,
-  .best-option .field-block .title  {
-	background-color: lightgreen;
-  }
-  .total-block {
-	font-weight: bold;
-  }
-  .total-percentage-container {
-	padding-top: 15px;
-	text-align: center;
-  }
-  .total-block .total-percentage {
-	padding-left: 55px;
-	font-size: 18px;
-  }
-  
+   input {
+   padding-right: 5px;
+   }
+   .inputs {
+   margin: 25px auto;
+   width: 1244px;
+   border: 1px solid black;
+   padding: 20px;
+   display: grid;
+   justify-content: space-evenly;
+   align-content: space-evenly;
+   grid-template-rows: 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr;
+   margin-bottom: 0;
+   background-color: #9b7fe9;
+   }
+   input {
+   text-align: right;
+   }
+   .sakrivalica{display:none!important}
+   .show{display:block!important}
+   div.options {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   }
+   div.option-block {
+   width: 400px;
+   border: 1px solid black;
+   text-align: center;
+   margin: 20px 20px;
+   }
+   .field-block {
+   margin-bottom: 20px;
+   }
+   .label-input {
+   width: 360px;
+   text-align: right;
+   }
+   div.label-input input {
+   margin: 2px 10px;
+   }
+   .inputs .label-input {
+   width: 500px;
+   }
+   h4 {
+   margin: 5px auto;
+   }
+   .total-block {
+   background-color: #9b7fe9;
+   margin-bottom: 0;
+   padding-bottom: 20px;
+   padding-top: 5px;
+   }
+   .total-block h3 {
+   margin: 10px auto;
+   }
+   .field-block .title {
+   margin: 0;
+   padding: 15px;
+   background-color: #9b7fe9;
+   margin-bottom: 15px;
+   }
+   .best-option .total-block,
+   .best-option .field-block .title {
+   background-color: lightgreen;
+   }
+   .total-block {
+   font-weight: bold;
+   }
+   .total-percentage-container {
+   padding-top: 15px;
+   text-align: center;
+   }
+   .total-block .total-percentage {
+   padding-left: 55px;
+   font-size: 18px;
+   }
 </style>
 <div class="inputs">
-  <div class="label-input">
-    <label><b>BRUTO</b></label>
-    <input type="money" id="bruto" value="60000"/>
-  </div>
-  <div class="label-input">
-    <label>Normirani trošak (samo za fizička lica)</label>
-    <input type="text" id="normirani-trosak" value="20"/>
-  </div>
-  <div class="label-input">
-    <label>Neoporezivi deo za fizičko lice (kada bi postojao)</label>
-    <input type="text" id="neoporezivi-deo" value="0"/>
-  </div>
-  <div class="label-input">
-    <label>Ostali troškovi (samo za knjigaše)</label>
-    <input type="text" id="ostali-troskovi" value="5000"/>
-  </div>
-  <div class="label-input">
-    <label>Paušal osnovica (samo za paušalce)</label>
-    <input type="text" id="pausal-osnovica" value="40000"/>
-  </div>
+   <div class="label-input">
+      <label><b>BRUTO</b></label>
+      <input type="money" id="bruto" value="60000"/>
+   </div>
+   <div class="label-input">
+      <label>Normirani trošak (samo za fizička lica)</label>
+      <input type="text" id="normirani-trosak" value="20"/>
+   </div>
+   <div class="label-input" style="visibility:hidden">
+      <label>Neoporezivi deo za fizičko lice (kada bi postojao)</label>
+      <input type="text" id="neoporezivi-deo" value="0"/>
+   </div>
+   <div class="label-input">
+      <label>Ostali troškovi (samo za knjigaše)</label>
+      <input type="text" id="ostali-troskovi" value="5000"/>
+   </div>
+   <div class="label-input">
+      <label>Paušal osnovica (samo za paušalce)</label>
+      <input type="text" id="pausal-osnovica" value="40000"/>
+   </div>
 </div>
 <div class="options">
-  <div class="option-block" id="fizicko-lice"></div>
-  <div class="option-block" id="pausalac"></div>
-  <div class="option-block" id="knjigas"></div>
+   <div class="option-block" id="fizicko-lice"></div>
+   <div class="option-block" id="pausalac"></div>
+   <div class="option-block" id="knjigas"></div>
 </div>
 <script>
-  
-  const defaults  = {
-    teretZaposlenog: {
-      pio: 14,
-      zdravstveno: 5.15,
-      nezaposlenost: 0.75,
-      porez: 10,
-    },
-	teretPoslodavca: {
-      pio: 11.5,
-      zdravstveno: 5.15,
-      nezaposlenost: 0,
-      porez: 0,
-    }
-  };
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const brutoElement = document.getElementById('bruto');
-    const normiraniTrosakElement = document.getElementById('normirani-trosak');
-    const neoporeziviDeoElement = document.getElementById('neoporezivi-deo');
-	const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
-	const pausalOsnovicaElement = document.getElementById('pausal-osnovica');
-    let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica;
-	const updateState = () => {
-		bruto = +brutoElement.value;
-		normiraniTrosak = +normiraniTrosakElement.value;
-		neoporeziviDeo = +neoporeziviDeoElement.value;
-		ostaliTroskovi = +ostaliTroskoviElement.value;
-		pausalOsnovica = +pausalOsnovicaElement.value;
-		renderAll();
-	};
-	
-    [brutoElement, normiraniTrosakElement, neoporeziviDeoElement, ostaliTroskoviElement, pausalOsnovicaElement].forEach(element => {
-		element.addEventListener('change', updateState)
-	});
-	const createDefaultPidObj = () => ({
-		teretZaposlenog: {...defaults.teretZaposlenog},
-		teretPoslodavca: {...defaults.teretPoslodavca},
-	});
-	const format = x => Math.round(x * 100) / 100;
-	const procenatBruto = x => Math.round(x * 10000 / bruto) / 100;
-    const renderAll = () => {
-	  const fizickoLiceElement = document.getElementById('fizicko-lice');
-      const fizickoLice = createDefaultPidObj();
-	  fizickoLice.title = 'Fizičko lice - ugovor o delu';
-      fizickoLice.osnovica = bruto - neoporeziviDeo - (bruto - neoporeziviDeo) * normiraniTrosak / 100;
-      fizickoLice.teretZaposlenog.nezaposlenost = 0;
-	  fizickoLice.ostaliTroskovi = 0;
-      fizickoLice.teretZaposlenog.porez = 20;
-	  
-	  const pausalElement = document.getElementById('pausalac');
-      const pausal = createDefaultPidObj();
-	  pausal.title = 'Paušalac';
-      pausal.osnovica = pausalOsnovica;
-	  pausal.ostaliTroskovi = 0;
-	  
-	  const knjigasElement = document.getElementById('knjigas');
-      const knjigas = createDefaultPidObj();
-	  knjigas.title = 'Knjigaš';
-      knjigas.osnovica = 25801;
-	  knjigas.ostaliTroskovi = ostaliTroskovi;
-	  knjigas.placaPorezNaDohodakGradjana = true;
-	  knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
-	  knjigas.neoporeziviDeoNaTeretZaposlenog = 16300;
-	  
-	  render(fizickoLice, fizickoLiceElement);
-	  render(pausal, pausalElement);
-	  render(knjigas, knjigasElement);
-	  
-	  let best = [fizickoLice, pausal, knjigas].sort((a,b) => a.ukupnoProcenat - b.ukupnoProcenat)[0];
-	  [fizickoLiceElement, pausalElement, knjigasElement].forEach(element => {
-		if (element.classList.contains('best-option')) {
-			element.classList.remove('best-option');
+    const defaults = {
+	    teretZaposlenog: {
+		    pio: 14,
+		    zdravstveno: 5.15,
+		    nezaposlenost: 0.75,
+		    porez: 10,
+		},
+		teretPoslodavca: {
+		    pio: 11.5,
+		    zdravstveno: 5.15,
+		    nezaposlenost: 0,
+		    porez: 0,
 		}
-      });
-      best.domElement.classList.add('best-option');
     };
-	const render = (pidObj, domElement) => {
-		pidObj.domElement = domElement;
-		if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
-			pidObj.teretZaposlenog.ukupno = format((pidObj.teretZaposlenog.pio * pidObj.osnovica +
-				pidObj.teretZaposlenog.zdravstveno * pidObj.osnovica +
-				(pidObj.teretZaposlenog.porez * (pidObj.osnovica - 16300)) +
-				pidObj.teretZaposlenog.nezaposlenost * pidObj.osnovica) / 100);
-		} else {		
-			pidObj.teretZaposlenog.procenatOsnovice = pidObj.teretZaposlenog.pio +
-				pidObj.teretZaposlenog.zdravstveno +
-				pidObj.teretZaposlenog.porez + 
-				pidObj.teretZaposlenog.nezaposlenost;
-			pidObj.teretZaposlenog.ukupno = format(pidObj.osnovica * pidObj.teretZaposlenog.procenatOsnovice / 100);
+   
+	window.addEventListener('DOMContentLoaded', () => {
+		const brutoElement = document.getElementById('bruto');
+		const normiraniTrosakElement = document.getElementById('normirani-trosak');
+		const neoporeziviDeoElement = document.getElementById('neoporezivi-deo');
+		const ostaliTroskoviElement = document.getElementById('ostali-troskovi');
+		const pausalOsnovicaElement = document.getElementById('pausal-osnovica');
+		let bruto, normiraniTrosak, neoporeziviDeo, ostaliTroskovi, pausalOsnovica;
+		const updateState = () => {
+			bruto = +brutoElement.value;
+			normiraniTrosak = +normiraniTrosakElement.value;
+			neoporeziviDeo = +neoporeziviDeoElement.value;
+			ostaliTroskovi = +ostaliTroskoviElement.value;
+			pausalOsnovica = +pausalOsnovicaElement.value;
+			renderAll();
 		};
-		pidObj.teretPoslodavca.procenatOsnovice = pidObj.teretPoslodavca.zdravstveno +
+
+		[brutoElement, normiraniTrosakElement, neoporeziviDeoElement, ostaliTroskoviElement, pausalOsnovicaElement].forEach(element => {
+			element.addEventListener('change', updateState)
+		});
+		const createDefaultPidObj = () => ({
+			teretZaposlenog: {...defaults.teretZaposlenog},
+			teretPoslodavca: {...defaults.teretPoslodavca},
+		});
+		const format = x => Math.round(x * 100) / 100;
+		const procenatBruto = x => Math.round(x * 10000 / bruto) / 100;
+		const renderAll = () => {
+		const fizickoLiceElement = document.getElementById('fizicko-lice');
+		const fizickoLice = createDefaultPidObj();
+		fizickoLice.title = 'Fizičko lice - ugovor o delu';
+		fizickoLice.osnovica = bruto - neoporeziviDeo - (bruto - neoporeziviDeo) * normiraniTrosak / 100;
+		fizickoLice.teretZaposlenog.nezaposlenost = 0;
+		fizickoLice.ostaliTroskovi = 0;
+		fizickoLice.teretZaposlenog.porez = 20;
+
+		const pausalElement = document.getElementById('pausalac');
+		const pausal = createDefaultPidObj();
+		pausal.title = 'Paušalac';
+		pausal.osnovica = pausalOsnovica;
+		pausal.ostaliTroskovi = 0;
+
+		const knjigasElement = document.getElementById('knjigas');
+		const knjigas = createDefaultPidObj();
+		knjigas.title = 'Knjigaš';
+		knjigas.osnovica = 25801;
+		knjigas.ostaliTroskovi = ostaliTroskovi;
+		knjigas.placaPorezNaDohodakGradjana = true;
+		knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
+		knjigas.neoporeziviDeoNaTeretZaposlenog = 16300;
+
+		render(fizickoLice, fizickoLiceElement);
+		render(pausal, pausalElement);
+		render(knjigas, knjigasElement);
+
+		let best = [fizickoLice, pausal, knjigas].sort((a,b) => a.ukupnoProcenat - b.ukupnoProcenat)[0];
+			[fizickoLiceElement, pausalElement, knjigasElement].forEach(element => {
+				if (element.classList.contains('best-option')) {
+					element.classList.remove('best-option');
+				}
+			});
+			best.domElement.classList.add('best-option');
+		};
+		const render = (pidObj, domElement) => {
+			pidObj.domElement = domElement;
+			if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
+				pidObj.teretZaposlenog.ukupno = format((pidObj.teretZaposlenog.pio * pidObj.osnovica +
+				pidObj.teretZaposlenog.zdravstveno * pidObj.osnovica +
+					(pidObj.teretZaposlenog.porez * (pidObj.osnovica - 16300)) +
+				pidObj.teretZaposlenog.nezaposlenost * pidObj.osnovica) / 100);
+			} else {
+				pidObj.teretZaposlenog.procenatOsnovice = pidObj.teretZaposlenog.pio +
+				pidObj.teretZaposlenog.zdravstveno +
+				pidObj.teretZaposlenog.porez +
+				pidObj.teretZaposlenog.nezaposlenost;
+				pidObj.teretZaposlenog.ukupno = format(pidObj.osnovica * pidObj.teretZaposlenog.procenatOsnovice / 100);
+			};
+			pidObj.teretPoslodavca.procenatOsnovice = pidObj.teretPoslodavca.zdravstveno +
 			pidObj.teretPoslodavca.pio;
-		pidObj.teretPoslodavca.ukupno = format(pidObj.osnovica * pidObj.teretPoslodavca.procenatOsnovice / 100);
-		
-		if (pidObj.placaPorezNaDohodakGradjana) {				
-			const osnovicaZaPorezNaDohodakGradjana = (bruto -
-				(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
-			pidObj.porezNaDohodakGradjana = format(osnovicaZaPorezNaDohodakGradjana * 10 / 100);
-			
-			console.log(bruto, pidObj.teretZaposlenog.ukupno, pidObj.teretPoslodavca.ukupno, pidObj.ostaliTroskovi, pidObj.porezNaDohodakGradjana, osnovicaZaPorezNaDohodakGradjana, (pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
-		} else {
-			pidObj.porezNaDohodakGradjana = 0;
-		}
-		
-		pidObj.ukupnoPid = format(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.porezNaDohodakGradjana);
-		pidObj.neto = format(bruto - pidObj.ukupnoPid - pidObj.ostaliTroskovi);
-		pidObj.ukupnoProcenat = procenatBruto(pidObj.ukupnoPid + pidObj.ostaliTroskovi);
-		domElement.innerHTML = `
-			<div class="field-block">
-			  <h3 class="title">${pidObj.title}</h3>
-			  <div class="label-input">
-				<label>Osnovica</label>
-				<input type="text" class="osnovica"
-					   value="${pidObj.osnovica}"
-					   disabled />
-			  </div>
-			</div>
-			<div class="field-block">
-			  <h4>Na teret zaposlenog</h4>
-			  <div class="label-input">
-				<label>PIO (${pidObj.teretZaposlenog.pio}%)</label>
-				<input type="text" class="zaposleni-pio"
-					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.pio / 100)}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label>Zdravstveno (${pidObj.teretZaposlenog.zdravstveno}%)</label>
-				<input type="text" class="zaposleni-zdravstveno"
-					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.zdravstveno / 100)}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label>Porez (${pidObj.teretZaposlenog.porez}%)</label>
-				<input type="text"
-					   value="${format((pidObj.osnovica - 16300) * pidObj.teretZaposlenog.porez / 100)}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label>Nezaposlenost (${pidObj.teretZaposlenog.nezaposlenost}%)</label>
-				<input type="text" class="zaposleni-nezaposlentost"
-					   value="${format(pidObj.osnovica * pidObj.teretZaposlenog.nezaposlenost / 100)}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label><b>Ukupno</b></label>
-				<input type="text"
-					   value="${pidObj.teretZaposlenog.ukupno}"
-					   disabled />	
-			  </div>
-			  <div class="label-input">
-				<label><b>%</b></label>
-				<input type="text"
-					   value="${procenatBruto(pidObj.teretZaposlenog.ukupno)}"
-					   disabled />
+			pidObj.teretPoslodavca.ukupno = format(pidObj.osnovica * pidObj.teretPoslodavca.procenatOsnovice / 100);
+
+			if (pidObj.placaPorezNaDohodakGradjana) {
+				const osnovicaZaPorezNaDohodakGradjana = (bruto -
+					(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
+				pidObj.porezNaDohodakGradjana = format(osnovicaZaPorezNaDohodakGradjana * 10 / 100);
+
+				console.log(bruto, pidObj.teretZaposlenog.ukupno, pidObj.teretPoslodavca.ukupno, pidObj.ostaliTroskovi, pidObj.porezNaDohodakGradjana,osnovicaZaPorezNaDohodakGradjana, (pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 15420));
+			} else {
+				pidObj.porezNaDohodakGradjana = 0;
+			}
+
+			pidObj.ukupnoPid = format(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.porezNaDohodakGradjana);
+			pidObj.neto = format(bruto - pidObj.ukupnoPid - pidObj.ostaliTroskovi);
+			pidObj.ukupnoProcenat = procenatBruto(pidObj.ukupnoPid + pidObj.ostaliTroskovi);
+			domElement.innerHTML = `
+				<div class="field-block">
+					<h3 class="title">${pidObj.title}</h3>
+					<div class="label-input">
+						<label>Osnovica</label>
+						<input type="text" class="osnovica" value="${pidObj.osnovica}" disabled />
+					</div>
 				</div>
-			</div>
-			<div class="field-block">
-			  <h4>Na teret poslodavca</h4>
-			  <div class="label-input">
-				<label>PIO (${pidObj.teretPoslodavca.pio}%)</label>
-				<input type="text"
-					   value="${format(pidObj.osnovica * pidObj.teretPoslodavca.pio / 100)}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label>Zdravstveno (${pidObj.teretPoslodavca.zdravstveno}%)</label>
-				<input type="text"
-					   value="${format(pidObj.osnovica * pidObj.teretPoslodavca.zdravstveno / 100)}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label><b>Ukupno</b></label>
-				<input type="text"
-					   value="${pidObj.teretPoslodavca.ukupno}"
-					   disabled />	
-			  </div>
-			  <div class="label-input">
-				<label><b>%</b></label>
-				<input type="text"
-					   value="${procenatBruto(pidObj.teretPoslodavca.ukupno)}"
-					   disabled />
-			  </div>
-			</div>
-			<div class="field-block">
-			  <h4>Porez na dohodak građana</h4>
-			  <div class="label-input">
-				<label>Porez na doh</label>
-				<input type="text"
-					   value="${pidObj.porezNaDohodakGradjana}"
-					   disabled />
-			  </div>
-			</div>
-			<div class="field-block total-block">
-			  <h3>Ukupno</h3>
-			  <div class="label-input">
-				<label><b>Ostali troškovi</b></label>
-				<input type="text"
-					   value="${pidObj.ostaliTroskovi}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label><b>UKUPNO PID</b></label>
-				<input type="text"
-					   value="${pidObj.ukupnoPid}"
-					   disabled />
-			  </div>
-			  <div class="label-input">
-				<label><b>NETO</b></label>
-				<input type="text"
-					   value="${pidObj.neto}"
-					   disabled />
-			  </div>
-			  <div class="label-input total-percentage-container">
-				<label class="total-percentage"><b>TROŠKOVI POSLOVANJA: ${pidObj.ukupnoProcenat}%</b></label>
-			  </div>
-			</div>
-		`;
-	};
-	updateState();
-  });
+				<div class="sakrivalica" class="hide">
+					<div class="field-block">
+						<h4>Na teret zaposlenog</h4>
+						<div class="label-input">
+							<label>PIO (${pidObj.teretZaposlenog.pio}%)</label>
+							<input type="text" class="zaposleni-pio" disabled
+								value="${format(pidObj.osnovica * pidObj.teretZaposlenog.pio / 100)}"/>
+						</div>
+						<div class="label-input">
+							<label>Zdravstveno (${pidObj.teretZaposlenog.zdravstveno}%)</label>
+							<input type="text" class="zaposleni-zdravstveno" disabled
+								value="${format(pidObj.osnovica * pidObj.teretZaposlenog.zdravstveno / 100)}"/>
+						</div>
+						<div class="label-input">
+							<label>Porez (${pidObj.teretZaposlenog.porez}%)</label>
+							<input type="text" disabled
+								value="${format((pidObj.osnovica - 16300) * pidObj.teretZaposlenog.porez / 100)}"/>
+						</div>
+						<div class="label-input">
+							<label>Nezaposlenost (${pidObj.teretZaposlenog.nezaposlenost}%)</label>
+							<input type="text" class="zaposleni-nezaposlentost" disabled
+								value="${format(pidObj.osnovica * pidObj.teretZaposlenog.nezaposlenost / 100)}"/>
+						</div>
+						<div class="label-input">
+							<label><b>Ukupno</b></label>
+							<input type="text" value="${pidObj.teretZaposlenog.ukupno}" disabled />
+						</div>
+						<div class="label-input">
+							<label><b>%</b></label>
+							<input type="text" value="${procenatBruto(pidObj.teretZaposlenog.ukupno)}" disabled />
+						</div>
+					</div>
+					<div class="field-block">
+						<h4>Na teret poslodavca</h4>
+						<div class="label-input">
+							<label>PIO (${pidObj.teretPoslodavca.pio}%)</label>
+							<input type="text" value="${format(pidObj.osnovica * pidObj.teretPoslodavca.pio / 100)}" disabled />
+						</div>
+						<div class="label-input">
+							<label>Zdravstveno (${pidObj.teretPoslodavca.zdravstveno}%)</label>
+							<input type="text" value="${format(pidObj.osnovica * pidObj.teretPoslodavca.zdravstveno / 100)}"
+								disabled />
+						</div>
+						<div class="label-input">
+							<label><b>Ukupno</b></label>
+							<input type="text" value="${pidObj.teretPoslodavca.ukupno}" disabled />
+						</div>
+						<div class="label-input">
+							<label><b>%</b></label>
+							<input type="text" value="${procenatBruto(pidObj.teretPoslodavca.ukupno)}" disabled />
+						</div>
+					</div>
+					<div class="field-block">
+						<h4>Porez na dohodak građana</h4>
+						<div class="label-input">
+							<label>Porez na doh</label>
+							<input type="text" value="${pidObj.porezNaDohodakGradjana}" disabled />
+						</div>
+					</div>
+				</div>
+				<div class="field-block total-block">
+					<h3>Ukupno</h3>
+					<div class="label-input">
+						<label><b>Ostali troškovi</b></label>
+						<input type="text"
+						value="${pidObj.ostaliTroskovi}"
+						disabled />
+					</div>
+					<div class="label-input">
+						<label><b>UKUPNO PID</b></label>
+						<input type="text" value="${pidObj.ukupnoPid}" disabled />
+					</div>
+					<div class="label-input">
+						<label><b>NETO</b></label>
+						<input type="text" value="${pidObj.neto}" disabled />
+					</div>
+					<div class="label-input total-percentage-container">
+						<label class="total-percentage"><b>TROŠKOVI POSLOVANJA: ${pidObj.ukupnoProcenat}%</b></label>
+					</div>
+				</div>`;
+		};
+		updateState();
+    });
+</script>
+<button onclick="myFunction('sakrivalica')" class="detaljnije">Detaljnije</button>
+<script>
+    function myFunction(id) {
+		var collection = document.getElementsByClassName(id);
+		console.log(collection);
+		for (let i = 0; i < collection.length; i++) {
+			let x = collection[i];
+			if (x.className.indexOf("show") == -1) {
+			   x.className += " show";
+			} else {
+			   x.className = x.className.replace(" show", "");
+			}
+		}
+    }
 </script>
