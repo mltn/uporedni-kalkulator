@@ -1,264 +1,488 @@
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-<link
-  href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
-  rel="stylesheet"
-/>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+ 
+<style>
+body {
+background-color: #fcfcfc;
+font-family: 'Raleway', sans-serif;
+margin:0px!important;
+padding: 0px;
+}
+input {
+padding-right: 5px;
+text-align: right;
+max-width: 100px;
+}
+.inputs {
+margin: 15px auto;
+padding: 10px;
+display: grid;
+font-size: 25px;
+text-align: left;
+background-color: #E6E6FA;
+}
+.inputs2 {
+margin: 0px;
+padding: 20px;
+height: 60px;
+display: block;
+font-size: 20px;
+text-align: left;
+background-color: #E6E6FA;
+border: 1px solid lightgray;
+}
 
-<link href="style.css" rel="stylesheet" />
+.inputs input {
+font-size: 25px;
+}
+.inputs2 input {
+font-size: 20px;
+}
+.sakrivalica{display:none!important}
+.show{display:block!important}
+div.options {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
+div.option-block {
+background-color: white;
+width: 33.33%;
+  width: calc(100% / 3 - 42px);
+text-align: center;
+margin: 20px 20px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 1px solid lightgray;
+}
+.field-block {
+margin-bottom: 20px;
+}
+.label-input {
+width: 90%;
+  width: calc(100% - 10px);
+text-align: right;
+}
+div.label-input input {
+margin: 2px 10px;
+}
+.inputs2 .label-input {
+width: 45%;
+text-align: left!important;
+padding-left: 15px;
+float: left;
+display: inline-block;
+position:relative;
+}
+.inputs2 .label-input2 {
+width:45%;
+text-align: right!important;
+padding-right: 15px;
+float: right;
+display: inline-block;
+position:relative;
+font-size: 18px;
+}
+@media only screen and (max-width: 790px) {
+.inputs2 .label-input {
+font-size: 18px;
+width: 100%;
+margin: 0px;
+padding: 0px;
+}
+.inputs2 input {
+max-width:115px!important;
+}
+.inputs2 .label-input2 {
+width: 100%;
+text-align:left!important;
+float:left!important;
+padding-left:0px;
+padding-top: 10px;
+}
+.inputs2 {
+height: 150px;
+}
+div.option-block {
+width: 100%;
+width: calc(100%);
+text-align: center;
+margin: 20px 0px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 1px solid lightgray;
+}
+div.label-input input {
+margin:0 0 0 10px;
+
+}
+.tooltip .tooltiptext {
+width: 280px;
+left: -60px;
+}
+
+}
+
+h4 {
+margin: 5px auto;
+}
+h2 {
+font-size: 40px;
+}
+.total-block {
+background-color: #E6E6FA;
+margin-bottom: 0;
+padding-bottom: 20px;
+padding-top: 5px;
+}
+.total-block h3 {
+margin: 20px auto;
+font-size: 25px;
+text-transform: uppercase;
+}
+h3 {
+margin: 10px auto;
+font-size: 25px;
+text-transform: uppercase;
+}
+.field-block .title {
+margin: 0;
+padding: 15px;
+background-color: #E6E6FA;
+margin-bottom: 20px;
+}
+.best-option .total-block,
+.best-option .field-block .title {
+background-color: #9b7fe9;
+}
+.total-block {
+font-weight: bold;
+}
+.total-percentage-container {
+padding-top: 20px;
+text-align: center;
+width: 100%!important;
+}
+.total-block .total-percentage {
+
+font-size: 20px;
+}
+
+.inputs2 input {
+max-width: 150px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip:hover {
+   
+}
+.close {
+  color: red;
+ cursor: pointer;
+  float: right;
+  text-align:right;
+  display:block;
+  background: #fff;
+    color: #000;
+    padding: 0 5px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+.close:hover {
+  cursor: pointer;
+}
+.tooltip .tooltiptext {
+  display: none;
+  width: 280px;
+  background-color: #9b7fe9;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+left:-30px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #fff;
+}
+.tooltip .tooltiptext4 {
+  display: none;
+  width: 280px;
+  background-color: #9b7fe9;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+left:-70px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #fff;
+}
+.tooltip .tooltiptext3 {
+  display: none;
+  width: 280px;
+  background-color: #9b7fe9;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+left:-20px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #fff;
+}
+
+.tooltip .tooltiptext5 {
+  display: none;
+  width: 280px;
+  background-color: #9b7fe9;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+left:-160px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #fff;
+}
+.tooltip .tooltiptext2 {
+  display: none;
+  width: 280px;
+  background-color: #9b7fe9;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+left:-30px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  border: 1px solid #fff;
+}
+.block {
+  display: block !important;
+}
+.infolink:before
+{
+    content: '?';
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: 1.8ex;
+    height: 1.8ex;
+  
+    line-height: 16px;
+    border-radius: 1.2ex;
+    margin-right: 4px;
+    padding: 2px;
+    color: #9b7fe9;
+    background: white;
+    border: 1px solid #9b7fe9;
+    text-decoration: none;
+}
+
+.infolink:hover:before
+{
+    color: white;
+    background: #9b7fe9;
+    border-color: white;
+    text-decoration: none;
+}
+</style>
 <div id="container">
-  <div class="inputs2">
-    <div class="label-input">
-      <div>
-        <label><b>MESEČNI PRILIV</b></label>
-        <input type="money" id="bruto" value="50.000,00" />
-      </div>
-      <div
-        style="
-          font-size: 18px;
-          padding-top: 10px;
-          vertical-align: middle;
-          height: 25px;
-          display: inline-block;
-        "
-      >
-        RADNI ODNOS
-        <input type="checkbox" id="radni-odnos" autocomplete="off" />
+<div class="inputs2">
+    <div class="label-input"><div>
+      <label><b>MESEČNI PRILIV</b></label>
+      <input type="money" id="bruto" value="50.000,00"/></div>
+	  <div style="font-size:18px; padding-top:10px; vertical-align:middle; height:25px;display:inline-block;">
+	  RADNI ODNOS
+        <input type="checkbox" id="radni-odnos" autocomplete="off"/>
+		
+<div onmousedown="show5()" class="tooltip"style="font-size:16px;">
+<a class="infolink" href="javascript:void(0)"></a>
+  <div id="tooltip5"  class="tooltiptext5"><span class="close" onmouseup="hide5()">x</span>
+    <span>Ovo polje obeležavate </br>samo ako ste u radnom odnosu u kompaniji u Srbiji, a ovaj prihod je vaša dodatna delatnost.
+</span>
+  </div>
+</div>
 
-        <div onmousedown="show5()" class="tooltip" style="font-size: 16px">
-          <a class="infolink" href="javascript:void(0)"></a>
-          <div id="tooltip5" class="tooltiptext5">
-            <span class="close" onmouseup="hide5()">x</span>
-            <span
-              >Ovo polje obeležavate <br />samo ako ste u radnom odnosu u
-              kompaniji u Srbiji, a ovaj prihod je vaša dodatna delatnost.
-            </span>
-          </div>
-        </div>
-      </div>
+</div>
     </div>
     <div class="label-input2">
-      <div>
+	<div>
         DETALJAN PREGLED
-        <input
-          type="checkbox"
-          id="myCheck"
-          autocomplete="off"
-          onclick="myFunction('sakrivalica')"
-        />
-      </div>
-      <div
-        style="
-          font-size: 18px;
-          padding-top: 10px;
-          vertical-align: middle;
-          height: 25px;
-          display: inline-block;
-        "
-      >
-        <img src="legenda.jpg" style="vertical-align: middle" />
-        <h6
-          style="
-            font-size: 16px;
-            line-height: 30px;
-            margin: 0px;
-            display: inline;
-            font-weight: 200;
-          "
-        >
-          = najisplativija opcija za zadati priliv*
-        </h6>
-      </div>
+        <input type="checkbox" id="myCheck" autocomplete="off"
+            onclick="myFunction('sakrivalica')">
+			</div>
+        <div style="font-size:18px; padding-top:10px; vertical-align:middle; height:25px;display:inline-block;">
+        <img src="legenda.jpg" style="vertical-align: middle;"><h6 style="font-size:16px; line-height:30px; margin:0px;display: inline;font-weight:200;"> = najisplativija opcija za zadati priliv*</h6>
+		</div>
     </div>
-  </div>
-  <div class="options">
-    <div class="option-block" id="fizicko-lice"></div>
-    <div class="option-block" id="pausalac"></div>
-    <div class="option-block" id="knjigas"></div>
-  </div>
-  <script>
+</div>
+<div class="options">
+   <div class="option-block" id="fizicko-lice"></div>
+   <div class="option-block" id="pausalac"></div>
+   <div class="option-block" id="knjigas"></div>
+</div>
+<script>
     const defaults = {
-      teretZaposlenog: {
-        pio: 14,
-        zdravstveno: 5.15,
-        nezaposlenost: 0.75,
-        porez: 10,
-      },
-      teretPoslodavca: {
-        pio: 11.5,
-        zdravstveno: 5.15,
-        nezaposlenost: 0,
-        porez: 0,
-      },
+   teretZaposlenog: {
+   pio: 14,
+   zdravstveno: 5.15,
+   nezaposlenost: 0.75,
+   porez: 10,
+},
+teretPoslodavca: {
+   pio: 11.5,
+   zdravstveno: 5.15,
+   nezaposlenost: 0,
+   porez: 0,
+}
     };
-    const getNumberValue = (element) => {
-      let val = element.value
-        .replace("%", "")
-        .replace(".", "")
-        .replace(",", ".");
-      let num = Number(val);
-      return Number.isNaN(num) ? 0 : num;
+    const getNumberValue = element => {
+        let val = element.value
+            .replace('%', '')
+            .replace('.', '')
+            .replace(',', '.');
+        let num = Number(val);
+        return Number.isNaN(num) ? 0 : num;
     };
     const format = (num) => {
-      return num
-        .toFixed(2)
-        .toString()
-        .replace(".", ",")
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return num.toFixed(2)
+            .toString()
+            .replace('.', ',')
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
-    window.addEventListener("DOMContentLoaded", () => {
-      const brutoElement = document.getElementById("bruto");
-      const radniOdnosElement = document.getElementById("radni-odnos");
-      let bruto,
-        normiraniTrosak = 20,
-        neoporeziviDeo = 0,
-        cenaKnjigovodstva = 5000,
-        licniTroskovi = 0;
-      (ostaliTroskovi = 5000),
-        (pausalKalkulator = 28403),
-        (radniOdnos = radniOdnosElement.checked);
-      const updateState = () => {
+window.addEventListener('DOMContentLoaded', () => {
+    const brutoElement = document.getElementById('bruto');
+    const radniOdnosElement = document.getElementById('radni-odnos');
+    let bruto, normiraniTrosak = 20,
+        neoporeziviDeo = 0, cenaKnjigovodstva = 5000, licniTroskovi = 0;
+        ostaliTroskovi = 5000, pausalKalkulator = 28403,
+        radniOdnos = radniOdnosElement.checked;
+    const updateState = () => {
         bruto = getNumberValue(brutoElement);
         radniOdnos = radniOdnosElement.checked;
         brutoElement.value = format(bruto);
         renderAll();
-      };
+    };
 
-      [brutoElement, radniOdnosElement].forEach((element) => {
-        element.addEventListener("change", updateState);
-      });
-      const createDefaultPidObj = () => ({
-        teretZaposlenog: { ...defaults.teretZaposlenog },
-        teretPoslodavca: { ...defaults.teretPoslodavca },
-        ostaliTroskovi: 0,
-        porezNaDohodakGradjana: 0,
-      });
-      const procenatBruto = (x) => Math.round((x * 10000) / bruto) / 100;
-      const renderAll = () => {
-        const fizickoLiceElement = document.getElementById("fizicko-lice");
-        const fizickoLice = createDefaultPidObj();
-        fizickoLice.title = "FiziДЌko lice";
-        fizickoLice.specificnaVrednostZaTipOporezivanja = "Normirani troЕЎak";
-        fizickoLice.teretZaposlenog.nezaposlenost = 0;
-        fizickoLice.teretZaposlenog.porez = 20;
+[brutoElement, radniOdnosElement].forEach(element => {
+    element.addEventListener('change', updateState)
+});
+const createDefaultPidObj = () => ({
+teretZaposlenog: {...defaults.teretZaposlenog},
+teretPoslodavca: {...defaults.teretPoslodavca},
+ostaliTroskovi: 0,
+porezNaDohodakGradjana: 0
+});
+const procenatBruto = x => Math.round(x * 10000 / bruto) / 100;
+const renderAll = () => {
+const fizickoLiceElement = document.getElementById('fizicko-lice');
+const fizickoLice = createDefaultPidObj();
+fizickoLice.title = 'Fizičko lice';
+fizickoLice.specificnaVrednostZaTipOporezivanja = 'Normirani trošak';
+fizickoLice.teretZaposlenog.nezaposlenost = 0;
+fizickoLice.teretZaposlenog.porez = 20;
 
-        const pausalElement = document.getElementById("pausalac");
-        const pausal = createDefaultPidObj();
-        pausal.specificnaVrednostZaTipOporezivanja = "Kalkulator";
-        pausal.title = "PauЕЎalac";
-        pausal.editableOsnovica = true;
+const pausalElement = document.getElementById('pausalac');
+const pausal = createDefaultPidObj();
+pausal.specificnaVrednostZaTipOporezivanja = 'Kalkulator';
+pausal.title = 'Paušalac';
+pausal.editableOsnovica = true;
 
-        const knjigasElement = document.getElementById("knjigas");
-        const knjigas = createDefaultPidObj();
-        knjigas.title = "KnjigaЕЎ";
-        knjigas.specificnaVrednostZaTipOporezivanja = "Knjigovodja";
-        knjigas.licniTroskovi = 0;
-        knjigas.placaPorezNaDohodakGradjana = true;
-        knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
-        knjigas.neoporeziviDeoNaTeretZaposlenog = 18300;
+const knjigasElement = document.getElementById('knjigas');
+const knjigas = createDefaultPidObj();
+knjigas.title = 'Knjigaš';
+knjigas.specificnaVrednostZaTipOporezivanja = 'Knjigovodja';
+knjigas.licniTroskovi = 0;
+knjigas.placaPorezNaDohodakGradjana = true;
+knjigas.postojiNeoporeziviDeoNaTeretZaposlenog = true;
+knjigas.neoporeziviDeoNaTeretZaposlenog = 18300;
 
-        render(fizickoLice, fizickoLiceElement);
-        render(pausal, pausalElement);
-        render(knjigas, knjigasElement);
+render(fizickoLice, fizickoLiceElement);
+render(pausal, pausalElement);
+render(knjigas, knjigasElement);
 
-        let best = [fizickoLice, pausal, knjigas].sort(
-          (a, b) => a.ukupnoProcenat - b.ukupnoProcenat
-        )[0];
-        [fizickoLiceElement, pausalElement, knjigasElement].forEach(
-          (element) => {
-            if (element.classList.contains("best-option")) {
-              element.classList.remove("best-option");
-            }
-          }
-        );
-        best.domElement.classList.add("best-option");
-      };
-      const render = (pidObj, domElement) => {
-        if (radniOdnos) {
-          pidObj.teretZaposlenog.zdravstveno = 0;
-          pidObj.teretZaposlenog.nezaposlenost = 0;
-          pidObj.teretPoslodavca.zdravstveno = 0;
-        }
+let best = [fizickoLice, pausal, knjigas].sort((a,b) => a.ukupnoProcenat - b.ukupnoProcenat)[0];
+[fizickoLiceElement, pausalElement, knjigasElement].forEach(element => {
+if (element.classList.contains('best-option')) {
+element.classList.remove('best-option');
+}
+});
+best.domElement.classList.add('best-option');
+};
+const render = (pidObj, domElement) => {
+    if (radniOdnos) {
+        pidObj.teretZaposlenog.zdravstveno = 0;
+        pidObj.teretZaposlenog.nezaposlenost = 0;
+        pidObj.teretPoslodavca.zdravstveno = 0;
+    }
 
-        pidObj.domElement = domElement;
+pidObj.domElement = domElement;
 
-        if (pidObj.title === "Fizičko lice") {
-          pidObj.osnovica =
-            bruto -
-            neoporeziviDeo -
-            ((bruto - neoporeziviDeo) * normiraniTrosak) / 100;
-        } else if (pidObj.title === "Paušalac") {
-          if ((radniOdnos = radniOdnosElement.checked)) {
-            pidObj.osnovica = (pausalKalkulator * 100) / 35.5;
-          } else {
-            pidObj.osnovica = pausalKalkulator / 0.4655;
-          }
-        } else if (pidObj.title === "Knjigaš") {
-          pidObj.ostaliTroskovi = cenaKnjigovodstva;
-          pidObj.osnovica = 28402;
-        }
+if (pidObj.title === "Fizičko lice") {
+pidObj.osnovica = bruto - neoporeziviDeo - (bruto - neoporeziviDeo) * normiraniTrosak / 100;
+} else if (pidObj.title === "Paušalac") {
+if (radniOdnos = radniOdnosElement.checked) {
+pidObj.osnovica = pausalKalkulator * 100 / 35.5; 
+}
+else {
+pidObj.osnovica = pausalKalkulator / 0.4655; 
+}
+} else if (pidObj.title === "Knjigaš") {
+pidObj.ostaliTroskovi = cenaKnjigovodstva;
+pidObj.osnovica = 28402;
+}
 
-        if (pidObj.title === "Knjigaš") {
-          pidObj.porezz =
-            ((pidObj.osnovica - 18300) * pidObj.teretZaposlenog.porez) / 100;
-        } else {
-          pidObj.porezz =
-            (pidObj.osnovica * pidObj.teretZaposlenog.porez) / 100;
-        }
 
-        if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
-          pidObj.teretZaposlenog.ukupno =
-            (pidObj.teretZaposlenog.pio * pidObj.osnovica +
-              pidObj.teretZaposlenog.zdravstveno * pidObj.osnovica +
-              pidObj.teretZaposlenog.porez * (pidObj.osnovica - 18300) +
-              pidObj.teretZaposlenog.nezaposlenost * pidObj.osnovica) /
-            100;
-        } else {
-          pidObj.teretZaposlenog.procenatOsnovice =
-            pidObj.teretZaposlenog.pio +
-            pidObj.teretZaposlenog.zdravstveno +
-            pidObj.teretZaposlenog.porez +
-            pidObj.teretZaposlenog.nezaposlenost;
-          pidObj.teretZaposlenog.ukupno =
-            (pidObj.osnovica * pidObj.teretZaposlenog.procenatOsnovice) / 100;
-        }
-        pidObj.teretPoslodavca.procenatOsnovice =
-          pidObj.teretPoslodavca.zdravstveno + pidObj.teretPoslodavca.pio;
-        pidObj.teretPoslodavca.ukupno =
-          (pidObj.osnovica * pidObj.teretPoslodavca.procenatOsnovice) / 100;
+if (pidObj.title === "Knjigaš") {
+pidObj.porezz = (pidObj.osnovica - 18300) * pidObj.teretZaposlenog.porez / 100;
+} else {
+pidObj.porezz = (pidObj.osnovica) * pidObj.teretZaposlenog.porez / 100;
+} 
 
-        if (pidObj.placaPorezNaDohodakGradjana) {
-          const osnovicaZaPorezNaDohodakGradjana =
-            bruto -
-            (pidObj.teretZaposlenog.ukupno +
-              pidObj.teretPoslodavca.ukupno +
-              pidObj.ostaliTroskovi +
-              17011 +
-              licniTroskovi);
-          pidObj.porezNaDohodakGradjana =
-            (osnovicaZaPorezNaDohodakGradjana * 10) / 100;
-        }
 
-        pidObj.ukupnoPid =
-          pidObj.teretZaposlenog.ukupno +
-          pidObj.teretPoslodavca.ukupno +
-          pidObj.porezNaDohodakGradjana;
-        pidObj.neto = bruto - pidObj.ukupnoPid - pidObj.ostaliTroskovi;
-        pidObj.ukupnoProcenat = procenatBruto(
-          pidObj.ukupnoPid + pidObj.ostaliTroskovi
-        );
-        domElement.innerHTML =
-          `
+if (pidObj.postojiNeoporeziviDeoNaTeretZaposlenog) {
+pidObj.teretZaposlenog.ukupno = (pidObj.teretZaposlenog.pio * pidObj.osnovica +
+pidObj.teretZaposlenog.zdravstveno * pidObj.osnovica +
+(pidObj.teretZaposlenog.porez * (pidObj.osnovica - 18300)) +
+pidObj.teretZaposlenog.nezaposlenost * pidObj.osnovica) / 100;
+} else {
+pidObj.teretZaposlenog.procenatOsnovice = pidObj.teretZaposlenog.pio +
+pidObj.teretZaposlenog.zdravstveno +
+pidObj.teretZaposlenog.porez +
+pidObj.teretZaposlenog.nezaposlenost;
+pidObj.teretZaposlenog.ukupno = pidObj.osnovica * pidObj.teretZaposlenog.procenatOsnovice / 100;
+};
+pidObj.teretPoslodavca.procenatOsnovice = pidObj.teretPoslodavca.zdravstveno +
+pidObj.teretPoslodavca.pio;
+pidObj.teretPoslodavca.ukupno = pidObj.osnovica * pidObj.teretPoslodavca.procenatOsnovice / 100;
+
+if (pidObj.placaPorezNaDohodakGradjana) {
+const osnovicaZaPorezNaDohodakGradjana = (bruto -
+(pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.ostaliTroskovi + 17011 + licniTroskovi));
+pidObj.porezNaDohodakGradjana = osnovicaZaPorezNaDohodakGradjana * 10 / 100;
+}
+
+pidObj.ukupnoPid = pidObj.teretZaposlenog.ukupno + pidObj.teretPoslodavca.ukupno + pidObj.porezNaDohodakGradjana;
+pidObj.neto = bruto - pidObj.ukupnoPid - pidObj.ostaliTroskovi;
+pidObj.ukupnoProcenat = procenatBruto(pidObj.ukupnoPid + pidObj.ostaliTroskovi);
+domElement.innerHTML = `
 <div class="field-block">
 <h3 class="title">${pidObj.title}</h3>` +
-          (pidObj.title === "Fizičko lice"
-            ? `
+(pidObj.title === 'Fizičko lice' ? `
 <div class="label-input">
 <label>
 
 <div onmousedown="show()" class="tooltip">
 <a class="infolink" href="javascript:void(0)"></a>
   <div id="tooltip"  class="tooltiptext"><span class="close" onmouseup="hide()">x</span>
-    <span>Troškovi koji se priznaju bez dokazivanja, definisani su zakonom i zavise od vrste pruЕѕenih usluga.</span>
+    <span>Troškovi koji se priznaju bez dokazivanja, definisani su zakonom i zavise od vrste pruženih usluga.</span>
   </div>
 </div>
 
@@ -268,14 +492,10 @@ Normirani troškovi
 
 
 </label>
-<input type="text" id="normirani-troskovi" value="${format(
-                normiraniTrosak
-              )}%" />
+<input type="text" id="normirani-troskovi" value="${format(normiraniTrosak)}%" />
 </div>
-`
-            : "") +
-          (pidObj.title === "Paušalac"
-            ? `
+` : '') +
+(pidObj.title === 'Paušalac' ? `
 <div class="label-input">
 <label>
 
@@ -292,10 +512,8 @@ Normirani troškovi
 Kalkulator poreza</a></label>
 <input type="text" id="pausal-kalkulator" value="${format(pausalKalkulator)}" />
 </div>
-`
-            : "") +
-          (pidObj.title === "Knjigaš"
-            ? `
+` : '') +
+(pidObj.title === 'Knjigaš' ? `
 <div class="label-input">
 <label>
 
@@ -309,9 +527,7 @@ Kalkulator poreza</a></label>
 
 
 Cena knjigovodstva</label>
-<input type="text" id="cena-knjigovodstva" value="${format(
-                cenaKnjigovodstva
-              )}" />
+<input type="text" id="cena-knjigovodstva" value="${format(cenaKnjigovodstva)}" />
 </div>
 <div class="label-input">
 <label>
@@ -319,7 +535,7 @@ Cena knjigovodstva</label>
 <div onmousedown="show4()" class="tooltip">
  <a class="infolink" href="javascript:void(0)"></a>
   <div id="tooltip4"  class="tooltiptext4"><span class="close" onmouseup="hide4()">x</span>
-    <span>Računi koje platite za troškove poslovanja (npr. telefon, struja, internet…) sa preduzetničkog računa smanjiće osnovicu za obračun poreza na dohodak.
+    <span>Računi koje platite za troškove poslovanja (npr. telefon, struja, internetвЂ¦) sa preduzetničkog računa smanjiće osnovicu za obračun poreza na dohodak.
 
 </span>
   </div>
@@ -328,31 +544,24 @@ Cena knjigovodstva</label>
 Lični troškovi</label>
 <input type="text" id="licni-troskovi" value="${format(licniTroskovi)}" />
 </div>
-`
-            : "") +
-          `<div class="label-input">
+` : '') +
+`<div class="label-input">
 <label>Osnovica</label>
-<input type="text" class="osnovica" value="${format(
-            pidObj.osnovica
-          )}" disabled />
+<input type="text" class="osnovica" value="${format(pidObj.osnovica)}" disabled />
 </div>
 </div>
-<div class="sakrivalica ${
-            document.getElementById("myCheck").checked ? "show" : "hide"
-          }">
+<div class="sakrivalica ${document.getElementById('myCheck').checked ? "show" : "hide"}">
 <div class="field-block">
 <h4>Na teret zaposlenog</h4>
 <div class="label-input">
 <label>PIO (${format(pidObj.teretZaposlenog.pio)}%)</label>
 <input type="text" class="zaposleni-pio" disabled
-value="${format((pidObj.osnovica * pidObj.teretZaposlenog.pio) / 100)}"/>
+value="${format(pidObj.osnovica * pidObj.teretZaposlenog.pio / 100)}"/>
 </div>
 <div class="label-input">
 <label>Zdravstveno (${format(pidObj.teretZaposlenog.zdravstveno)}%)</label>
 <input type="text" class="zaposleni-zdravstveno" disabled
-value="${format(
-            (pidObj.osnovica * pidObj.teretZaposlenog.zdravstveno) / 100
-          )}"/>
+value="${format(pidObj.osnovica * pidObj.teretZaposlenog.zdravstveno / 100)}"/>
 </div>
 <div class="label-input">
 <label>Porez (${format(pidObj.teretZaposlenog.porez)}%)</label>
@@ -362,9 +571,7 @@ value="${format(pidObj.porezz)}"/>
 <div class="label-input">
 <label>Nezaposlenost (${format(pidObj.teretZaposlenog.nezaposlenost)}%)</label>
 <input type="text" class="zaposleni-nezaposlentost" disabled
-value="${format(
-            (pidObj.osnovica * pidObj.teretZaposlenog.nezaposlenost) / 100
-          )}"/>
+value="${format(pidObj.osnovica * pidObj.teretZaposlenog.nezaposlenost / 100)}"/>
 </div>
 <div class="label-input">
 <label><b>Ukupno</b></label>
@@ -372,24 +579,18 @@ value="${format(
 </div>
 <div class="label-input">
 <label><b>%</b></label>
-<input type="text" value="${format(
-            procenatBruto(pidObj.teretZaposlenog.ukupno)
-          )}%" disabled />
+<input type="text" value="${format(procenatBruto(pidObj.teretZaposlenog.ukupno))}%" disabled />
 </div>
 </div>
 <div class="field-block">
 <h4>Na teret poslodavca</h4>
 <div class="label-input">
 <label>PIO (${format(pidObj.teretPoslodavca.pio)}%)</label>
-<input type="text" value="${format(
-            (pidObj.osnovica * pidObj.teretPoslodavca.pio) / 100
-          )}" disabled />
+<input type="text" value="${format(pidObj.osnovica * pidObj.teretPoslodavca.pio / 100)}" disabled />
 </div>
 <div class="label-input">
 <label>Zdravstveno (${format(pidObj.teretPoslodavca.zdravstveno)}%)</label>
-<input type="text" value="${format(
-            (pidObj.osnovica * pidObj.teretPoslodavca.zdravstveno) / 100
-          )}"
+<input type="text" value="${format(pidObj.osnovica * pidObj.teretPoslodavca.zdravstveno / 100)}"
 disabled />
 </div>
 <div class="label-input">
@@ -398,9 +599,7 @@ disabled />
 </div>
 <div class="label-input">
 <label><b>%</b></label>
-<input type="text" value="${format(
-            procenatBruto(pidObj.teretPoslodavca.ukupno)
-          )}%" disabled />
+<input type="text" value="${format(procenatBruto(pidObj.teretPoslodavca.ukupno))}%" disabled />
 </div>
 </div>
 <div class="field-block">
@@ -428,124 +627,123 @@ disabled />
 <input type="text" value="${format(pidObj.neto)}" disabled />
 </div>
 <div class="label-input total-percentage-container">
-<label class="total-percentage"><b>TROŠKOVI POSLOVANJA:</b> <h2>${format(
-            pidObj.ukupnoProcenat
-          )}%</h2></label>
+<label class="total-percentage"><b>TROЕ KOVI POSLOVANJA:</b> <h2>${format(pidObj.ukupnoProcenat)}%</h2></label>
 </div>
 </div>`;
 
-        if (pidObj.title === "FiziДЌko lice") {
-          let normiraniTrosakElement =
-            document.getElementById("normirani-troskovi");
-          normiraniTrosakElement.addEventListener("change", () => {
-            normiraniTrosak = getNumberValue(normiraniTrosakElement);
-            render(pidObj, domElement);
-          });
-        } else if (pidObj.title === "Paušalac") {
-          let pausalKalkulatorElement =
-            document.getElementById("pausal-kalkulator");
-          pausalKalkulatorElement.addEventListener("change", () => {
-            pausalKalkulator = getNumberValue(pausalKalkulatorElement);
-            render(pidObj, domElement);
-          });
-        } else if (pidObj.title === "Knjigaš") {
-          let cenaKnjigovodstvaElement =
-            document.getElementById("cena-knjigovodstva");
-          cenaKnjigovodstvaElement.addEventListener("change", () => {
-            cenaKnjigovodstva = getNumberValue(cenaKnjigovodstvaElement);
-            render(pidObj, domElement);
-          });
-          let licniTroskoviElement = document.getElementById("licni-troskovi");
-          licniTroskoviElement.addEventListener("change", () => {
-            licniTroskovi = getNumberValue(licniTroskoviElement);
-            render(pidObj, domElement);
-          });
-        }
-      };
-      updateState();
+if (pidObj.title === "Fizičko lice") {
+let normiraniTrosakElement = document.getElementById('normirani-troskovi');
+normiraniTrosakElement.addEventListener('change', () => {
+normiraniTrosak = getNumberValue(normiraniTrosakElement);
+render(pidObj, domElement);
+});
+} else if (pidObj.title === "Paušalac") {
+let pausalKalkulatorElement = document.getElementById('pausal-kalkulator');
+pausalKalkulatorElement.addEventListener('change', () => {
+pausalKalkulator = getNumberValue(pausalKalkulatorElement);
+render(pidObj, domElement);
+});
+} else if (pidObj.title === "Knjigaš") {
+let cenaKnjigovodstvaElement = document.getElementById('cena-knjigovodstva');
+cenaKnjigovodstvaElement.addEventListener('change', () => {
+cenaKnjigovodstva = getNumberValue(cenaKnjigovodstvaElement);
+render(pidObj, domElement);
+});
+let licniTroskoviElement = document.getElementById('licni-troskovi');
+licniTroskoviElement.addEventListener('change', () => {
+licniTroskovi = getNumberValue(licniTroskoviElement);
+render(pidObj, domElement);
+});
+}
+};
+updateState();
     });
-  </script>
+</script>
 </div>
 <script type="text/javascript">
-  function hide() {
-    document.getElementById("tooltip").classList.remove("block");
-  }
-  function show() {
-    document.getElementById("tooltip5").classList.remove("block");
+ function hide() {
+  document.getElementById("tooltip").classList.remove("block");
+}
+function show() {
+ document.getElementById("tooltip5").classList.remove("block");
     document.getElementById("tooltip3").classList.remove("block");
-    document.getElementById("tooltip2").classList.remove("block");
-    document.getElementById("tooltip4").classList.remove("block");
-    document.getElementById("tooltip").classList.add("block");
-  }
-  function hide2() {
-    document.getElementById("tooltip2").classList.remove("block");
-  }
-  function show2() {
-    document.getElementById("tooltip5").classList.remove("block");
+  document.getElementById("tooltip2").classList.remove("block");
+  document.getElementById("tooltip4").classList.remove("block");
+   document.getElementById("tooltip").classList.add("block");
+
+}
+ function hide2() {
+  document.getElementById("tooltip2").classList.remove("block");
+}
+function show2() {
+ document.getElementById("tooltip5").classList.remove("block");
     document.getElementById("tooltip3").classList.remove("block");
+  document.getElementById("tooltip4").classList.remove("block");
+  document.getElementById("tooltip").classList.remove("block");
+  document.getElementById("tooltip2").classList.add("block");
+ 
+  
+}
+ function hide3() {
+  document.getElementById("tooltip3").classList.remove("block");
+}
+function show3() {
+document.getElementById("tooltip").classList.remove("block");
+ document.getElementById("tooltip5").classList.remove("block");
+  document.getElementById("tooltip2").classList.remove("block");
     document.getElementById("tooltip4").classList.remove("block");
-    document.getElementById("tooltip").classList.remove("block");
-    document.getElementById("tooltip2").classList.add("block");
-  }
-  function hide3() {
-    document.getElementById("tooltip3").classList.remove("block");
-  }
-  function show3() {
-    document.getElementById("tooltip").classList.remove("block");
-    document.getElementById("tooltip5").classList.remove("block");
-    document.getElementById("tooltip2").classList.remove("block");
-    document.getElementById("tooltip4").classList.remove("block");
-    document.getElementById("tooltip3").classList.add("block");
-  }
-  function hide4() {
-    document.getElementById("tooltip4").classList.remove("block");
-  }
-  function show4() {
-    document.getElementById("tooltip5").classList.remove("block");
-    document.getElementById("tooltip2").classList.remove("block");
-    document.getElementById("tooltip").classList.remove("block");
-    document.getElementById("tooltip3").classList.remove("block");
-    document.getElementById("tooltip4").classList.add("block");
-  }
-  function hide5() {
-    document.getElementById("tooltip5").classList.remove("block");
-  }
-  function show5() {
-    document.getElementById("tooltip4").classList.remove("block");
-    document.getElementById("tooltip3").classList.remove("block");
-    document.getElementById("tooltip2").classList.remove("block");
-    document.getElementById("tooltip").classList.remove("block");
-    document.getElementById("tooltip5").classList.add("block");
-  }
+   document.getElementById("tooltip3").classList.add("block");
+
+}
+ function hide4() {
+  document.getElementById("tooltip4").classList.remove("block");
+}
+function show4() {
+ document.getElementById("tooltip5").classList.remove("block");
+document.getElementById("tooltip2").classList.remove("block");
+document.getElementById("tooltip").classList.remove("block");
+ document.getElementById("tooltip3").classList.remove("block");
+ document.getElementById("tooltip4").classList.add("block");
+
+}
+ function hide5() {
+  document.getElementById("tooltip5").classList.remove("block");
+}
+function show5() {
+ document.getElementById("tooltip4").classList.remove("block");
+  document.getElementById("tooltip3").classList.remove("block");
+  document.getElementById("tooltip2").classList.remove("block");
+  document.getElementById("tooltip").classList.remove("block");
+  document.getElementById("tooltip5").classList.add("block");
+ 
+}
 </script>
 <script>
-  function myFunction(id) {
-    var collection = document.getElementsByClassName(id);
-    for (let i = 0; i < collection.length; i++) {
-      let x = collection[i];
-      if (document.getElementById("myCheck").checked) {
+    function myFunction(id) {
+        var collection = document.getElementsByClassName(id);
+        for (let i = 0; i < collection.length; i++) {
+            let x = collection[i];
+        if (document.getElementById('myCheck').checked) {
         x.className += " show";
-      } else {
+        } else {
         x.className = x.className.replace(" show", "");
-      }
-    }
-  }
+        }
+        }
+    };
 </script>
 <script>
-  let height;
-  const sendPostMessage = () => {
-    if (height !== document.getElementById("container").offsetHeight) {
-      height = document.getElementById("container").offsetHeight;
-      window.parent.postMessage(
-        {
-          frameHeight: height,
-        },
-        "*"
-      );
-      console.log(height); // check the message is being sent correctly
-    }
-  };
-  window.onload = () => sendPostMessage();
-  window.onresize = () => sendPostMessage();
-  document.getElementById("myCheck").onchange = () => sendPostMessage();
+let height;
+const sendPostMessage = () => {
+  if (height !== document.getElementById('container').offsetHeight) {
+    height = document.getElementById('container').offsetHeight;
+    window.parent.postMessage({
+      frameHeight: height
+    }, '*');
+    console.log(height) // check the message is being sent correctly
+  }
+}
+window.onload = () => sendPostMessage();
+window.onresize = () => sendPostMessage();
+document.getElementById('myCheck').onchange = () => sendPostMessage();
+
 </script>
