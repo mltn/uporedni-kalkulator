@@ -6,7 +6,7 @@ const defaults = {
       porez: 10,
     },
     teretPoslodavca: {
-      pio: 11.5,
+      pio: 11,
       zdravstveno: 5.15,
       nezaposlenost: 0,
       porez: 0,
@@ -31,8 +31,8 @@ const defaults = {
     const brutoElement = document.getElementById("bruto");
     const radniOdnosElement = document.getElementById("radni-odnos");
     let bruto,
-      normiraniTrosak = 20,
-      neoporeziviDeo = 0,
+      normiraniTrosak = 50,
+      neoporeziviDeo = 32000,
       cenaKnjigovodstva = 5000,
       licniTroskovi = 0;
     (ostaliTroskovi = 5000),
@@ -177,22 +177,31 @@ const defaults = {
           ? `
               <div class="label-input">
                   <label>
-                  <div onmousedown="show()" class="tooltip">
-                      <a class="infolink" href="javascript:void(0)"></a>
-                      <div id="tooltip" class="tooltiptext">
-                      <span class="close" onmouseup="hide()">x</span>
-                      <span
-                          >Troškovi koji se priznaju bez dokazivanja, definisani su zakonom i
-                          zavise od vrste pruženih usluga.</span
-                      >
-                      </div>
-                  </div>
-                  Normirani troškovi
+                    <div onmousedown="show()" class="tooltip">
+                        <a class="infolink" href="javascript:void(0)"></a>
+                        <div id="tooltip" class="tooltiptext">
+                        <span class="close" onmouseup="hide()">x</span>
+                        <span
+                            >Troškovi koji se priznaju bez dokazivanja, definisani su zakonom i
+                            zavise od vrste pruženih usluga.</span
+                        >
+                        </div>
+                    </div>
+                    Normirani troškovi
                   </label>
                   <input
-                  type="text"
-                  id="normirani-troskovi"
-                  value="${format(normiraniTrosak)}%"
+                    type="text"
+                    id="normirani-troskovi" disabled
+                    value="${format(normiraniTrosak)}%"
+                  />
+              </div>
+              <div class="label-input">
+                  <label>
+                    Neoporezivi iznos
+                  </label>
+                  <input
+                    type="text" disabled
+                    value="32.000,00"
                   />
               </div>
               `
@@ -271,15 +280,15 @@ const defaults = {
               `
           : "") +
         `
-              <div class="label-input">
-                  <label>Osnovica</label>
-                  <input
-                  type="text"
-                  class="osnovica"
-                  value="${format(pidObj.osnovica)}"
-                  disabled
-                  />
-              </div>
+                <div class="label-input">
+                    <label>Osnovica</label>
+                    <input
+                    type="text"
+                    class="osnovica"
+                    value="${format(pidObj.osnovica)}"
+                    disabled
+                    />
+                </div>
               </div>
               <div
               class="sakrivalica ${document.getElementById("myCheck").checked ? "show" : "hide"}"
