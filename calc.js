@@ -105,9 +105,7 @@ const defaults = {
 
       if (pidObj.title === "Fizičko lice") {
         pidObj.osnovica =
-          bruto -
-          neoporeziviDeo -
-          ((bruto - neoporeziviDeo) * normiraniTrosak) / 100;
+            Math.max(0, bruto * normiraniTrosak / 100 - neoporeziviDeo);
       } else if (pidObj.title === "Paušalac") {
         if ((radniOdnos = radniOdnosElement.checked)) {
           pidObj.osnovica = (pausalKalkulator * 100) / 35.5;
