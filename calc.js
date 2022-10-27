@@ -114,7 +114,7 @@ const defaults = {
         }
       } else if (pidObj.title === "Knjigaš") {
         pidObj.ostaliTroskovi = cenaKnjigovodstva;
-        pidObj.osnovica = 28402;
+        pidObj.osnovica = 30880;
       }
 
       if (pidObj.title === "Knjigaš") {
