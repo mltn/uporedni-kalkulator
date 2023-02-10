@@ -6,7 +6,7 @@ const defaults = {
       porez: 10,
     },
     teretPoslodavca: {
-      pio: 11,
+      pio: 10,
       zdravstveno: 5.15,
       nezaposlenost: 0,
       porez: 0,
