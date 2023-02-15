@@ -75,6 +75,24 @@
     <div class="option-block" id="knjigas"></div>
   </div>
   <script src="calc.js"></script>
+  <style>
+    #fizicko-lice {
+      position: relative;
+    }
+    #fizicko-lice::before {
+      content: 'NAPOMENA: čeka se konačna verzija oporezivanja za fizičko lice';
+      font-size: 11px;
+      border: 1px solid red;
+      border-radius: 2px;
+      background-color: pink;
+      padding: 2px 4px 0 4px;
+      position: absolute;
+      top: 42px;
+      left: 10px;
+      right: 10px;
+    }
+    
+  </style>
 </div>
 <script type="text/javascript">
   function hide() {
